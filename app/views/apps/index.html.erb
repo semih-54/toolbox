@@ -1,13 +1,60 @@
+<head>
+  <script src="https://kit.fontawesome.com/95578669af.js" crossorigin="anonymous"></script>
+<head>
 
-
+<body>
 
 <div class="container">
   <div class="search">
-    <div class="search-bar">
-      <%= form_tag apps_path, method: :get do %>
-        <%= text_field_tag :search, params[:search], placeholder: "Search" %>
-        <%= submit_tag "Search", class: "btn btn-primary" %>
-      <% end %>
-    </div>
+    <%= form_tag apps_path, method: :get do %>
+      <%= text_field_tag :search, params[:search], placeholder: "Search" %>
+      <%= submit_tag "Search", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+
+  <div class="filters d-flex justify-content-between m-2">
+    <div class="filter_button col-6"> Category Filter </div>
+    <div class="filter_button col-6"> Connections Only </div>
+  </div>
+
+
+  <div class="apps" id="apps_div">
+    <% @apps.each do |app| %>
+      <div class="app-card">
+        <div class="app d-flex justify-content mb-2 align-items-center">
+
+          <%= link_to app_path(app) do %>
+            <%= image_tag "notion.png", width: "80px", height: "80px", crop: :fill %>
+          <% end %>
+
+          <div class="content-up-down-row d-flex flex-grow-1">
+            <div class="name-description flex-column flex-grow-1 justify-content px-3">
+              <div class="app-name mt-2 mb-2">
+                <%= link_to app.name.truncate(App::NAME_LENGTH), app_path(app), class: "text-decoration-none fw-bold h5" %>
+              </div>
+
+              <div class="app-description small">
+                <p> Category: <%= app.categories.map(&:name).join(", ") %> </p>
+                <p> <%#= reccommenders(current_user.connections).count %> x connections upvoting </p>
+              </div>
+            </div>
+
+            <div class="up-down p-1 me-1">
+              <br>
+              <div class="up text-center mb-1">
+                <i class="fa-solid fa-angles-up fa-xl" style="color: #1eb428;"></i>
+              </div>
+              <small class="text-align-center font-weight-bold"> <%= app.total_votes %> </small>
+              <div class="down text-center mt-1">
+                <i class="fa-solid fa-angles-down fa-xl" style="color: #c40e0e;"></i>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>
+
+</body>
