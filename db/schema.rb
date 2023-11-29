@@ -10,9 +10,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_29_030123) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_29_033114) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "app_categories", force: :cascade do |t|
+    t.bigint "app_id", null: false
+    t.bigint "category_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["app_id"], name: "index_app_categories_on_app_id"
+    t.index ["category_id"], name: "index_app_categories_on_category_id"
+  end
+
+  create_table "apps", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.integer "total_votes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "connections", force: :cascade do |t|
+    t.string "status"
+    t.integer "asker_id"
+    t.integer "receiver_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -22,8 +53,26 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_29_030123) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "username"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  create_table "votes", force: :cascade do |t|
+    t.integer "vote"
+    t.bigint "user_id", null: false
+    t.bigint "app_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["app_id"], name: "index_votes_on_app_id"
+    t.index ["user_id"], name: "index_votes_on_user_id"
+  end
+
+  add_foreign_key "app_categories", "apps"
+  add_foreign_key "app_categories", "categories"
+  add_foreign_key "connections", "users", column: "asker_id"
+  add_foreign_key "connections", "users", column: "receiver_id"
+  add_foreign_key "votes", "apps"
+  add_foreign_key "votes", "users"
 end
