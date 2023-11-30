@@ -5,14 +5,28 @@ class AppsController < ApplicationController
     if params[:query].present?
       sql_subquery = "name ILIKE :query OR description ILIKE :query"
       @apps = @apps.where(sql_subquery, query: "%#{params[:query]}%")
-    elsif params[:category_id].present? && params[:connections] == "true"
-      @apps = AppCategory.where(category_id: params[:category_id]).map(&:app)
-      @apps = App.recommended_by(current_user.connections)
-    elsif params[:category_id].present? && params[:connections] == "false"
-      @apps = AppCategory.where(category_id: params[:category_id]).map(&:app)
-    else params[:connections] == "true"
+    end
+
+    if params[:connections] == "true"
       @apps = App.recommended_by(current_user.connections)
     end
+
+    if params[:category_id].present?
+      @apps = @apps.joins(:categories).where(categories: {id: params[:category_id]})
+    end
+
+
+    # if params[:query].present?
+    #   sql_subquery = "name ILIKE :query OR description ILIKE :query"
+    #   @apps = @apps.where(sql_subquery, query: "%#{params[:query]}%")
+    # elsif params[:category_id].present? && params[:connections] == "true"
+    #   @apps = AppCategory.where(category_id: params[:category_id]).map(&:app)
+    #   @apps = App.recommended_by(current_user.connections)
+    # elsif params[:category_id].present? && params[:connections] == "false"
+    #   @apps = AppCategory.where(category_id: params[:category_id]).map(&:app)
+    # elsif params[:connections] == "true"
+    #   @apps = App.recommended_by(current_user.connections)
+    # end
 
     @categories = Category.all
   end
