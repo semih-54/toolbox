@@ -1,6 +1,15 @@
 class AppsController < ApplicationController
   def index
     @apps = App.all
+    if params[:query].present?
+      sql_subquery = "name ILIKE :query OR description ILIKE :query"
+      @apps = @apps.where(sql_subquery, query: "%#{params[:query]}%")
+    elsif params[:category_id].present?
+      @apps = @apps.where(app_categories: { category_id: params[:category_id] })
+    else
+      @apps = App.all
+    end
+    @categories = Category.all
   end
 
   def show
