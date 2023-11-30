@@ -4,4 +4,10 @@
   color: white;
   padding: 5px;
   box-shadow: 1px 1px 1px #BBE1FA;
+
+  .filter_button:hover {
+    background-color: #1B262C;
+    color: #BBE1FA;
+  }
+
 }
