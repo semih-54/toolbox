@@ -1,0 +1,16 @@
+<div class="container p-5 vh-100">
+  <div class="text-white text-center">
+    <h1>Your Profile</h1>
+    <div class="my-3">
+      <% if current_user.photo.attached? %>
+        <%= cl_image_tag current_user.photo.key, class: "rounded-circle", height: 150, width: 150, crop: :fill %>
+      <% else %>
+        <%= image_tag "avatar_placeholder.jpg", class: "rounded-circle", height: 150 %>
+      <% end %>
+    </div>
+
+
+    <div class="fw-bold mb-1 fs-3"><%= current_user.username %></div>
+    <div><%= current_user.email %></div>
+  </div>
+</div>

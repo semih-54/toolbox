@@ -4,8 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  # after_create :create_connection
-
+  has_one_attached :photo
   has_many :votes
   has_many :apps, through: :votes
   has_many :sent_connections, class_name: 'Connection', foreign_key: "asker_id"
