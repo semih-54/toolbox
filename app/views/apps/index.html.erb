@@ -20,7 +20,7 @@
   </div>
 
   <div class="filters d-flex justify-content-between mb-3">
-    <div class="filter_button d-flex flex-grow-1 me-3">
+    <div class="filter_button d-flex flex-grow-1 me-2">
       <%= form_with(url: apps_path, method: :get, local: true) do %>
         <%= select_tag :category_id, options_from_collection_for_select(@categories, :id, :name, params[:category_id]), include_blank: 'All Categories' %>
         <%= submit_tag 'Filter' %>
@@ -30,7 +30,7 @@
     <div class="toggle pt-2">
       <% if params[:connections] == "true" %>
         <i class="fa-solid fa-user-group pe-2" style="color: #3282B8">
-        <%= link_to "Off", apps_path, class: "filter_button" %></i>
+        <%= link_to "Off", request.params.merge(connections: false), class: "filter_button" %></i>
       <% else %>
         <i class="fa-solid fa-user-group pe-2" style="color: #3282B8">
         <%= link_to "On", request.params.merge(connections: true), class: "filter_button" %></i>

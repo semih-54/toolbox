@@ -10,7 +10,7 @@ class App < ApplicationRecord
   has_many :categories, through: :app_categories
 
   def self.recommended_by(connections)
-    App.joins(:votes).where(votes: { user: connections }).and(App.joins(:votes).where(votes: { vote: 1 }))
+    App.joins(:votes).where(votes: { user: connections, vote: 1 }).group(:id)
   end
 
   def reccommenders(connections)
