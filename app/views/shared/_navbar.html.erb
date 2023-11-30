@@ -1,24 +1,48 @@
-<div class="navbar navbar-expand-sm navbar-light ">
-  <div class="container-fluid">
-    <%= image_tag "toolbox.png", class: "logo", href: "/"%>
+<div class="navbar navbar-expand-sm transparent fixed ">
+  <div class="container-fluid ">
+    <div class="d-flex">
+      <%= link_to root_path  do %>
+      <%= image_tag "toolbox.png", class: "logo"%>
+      <% end %>
+      <h5>ToolBox</h5>
+    </div>
 
     <% if user_signed_in? %>
-        <div class="navbar-nav flex-column flex-sm-row">
-          <%= link_to "Home", "#", class: "nav-link" %>
-          <%= link_to "Messages", "#", class: "nav-link" %>
-        </div>
-    <% else %>
-        <%= link_to "Login", new_user_session_path, class: "nav-link" %>
-    <% end %>
-      </ul>
-  </div>
-</div>
+     <div class="d-flex">
+        <button type="button" class="home-btn" data-bs-toggle="dropdown" aria-expanded="false ">
+          <span class="fas fa-home fa-lg px-1 home" style="color: #000000;padding-top: 20px;" ></span>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end">
+          <li><a class="dropdown-item" href="#">Something else here</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" href="#">Separated link</a></li>
+        </ul>
 
-<div class="nav navbar-expand-sm navbar-light text-center ">
-  <div class="container-fluid">
-    <div class="search-bar">
-      <input type="text" class="" placeholder="Search">
-      <button type="button" class="btn btn-outline-primary">Search</button>
-    </div>
+        <button type="button" class="profile-btn" data-bs-toggle="dropdown" aria-expanded="false">
+          <span class="fas fa-user-circle fa-lg profile" style="#000000;padding-top: 20px;"></span>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end">
+          <li><a class="dropdown-item active" href="#">Action</a></li>
+          <li><a class="dropdown-item" href="#">Another action</a></li>
+          <li><a class="dropdown-item" href="#">Something else here</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <%= link_to "Logout", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+        </ul>
+     </div>
+    <% else %>
+      <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+    <% end %>
   </div>
+
+  <!--<div class="d-flex">
+    <% if user_signed_in? %>
+      <div class="search">
+        <%= form_tag apps_path, method: :get, class: "d-flex justify-content-center" do %>
+        <%= text_field_tag :search, params[:search], placeholder: "Search" %>
+        <%= submit_tag "Search", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+      <% else %>
+      <% end %>
+  </div>-->
 </div>
