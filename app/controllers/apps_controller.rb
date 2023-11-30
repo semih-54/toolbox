@@ -5,9 +5,12 @@ class AppsController < ApplicationController
     if params[:query].present?
       sql_subquery = "name ILIKE :query OR description ILIKE :query"
       @apps = @apps.where(sql_subquery, query: "%#{params[:query]}%")
-    elsif params[:category_id].present?
+    elsif params[:category_id].present? && params[:connections] == "true"
       @apps = AppCategory.where(category_id: params[:category_id]).map(&:app)
-    elsif params[:connections] == "true"
+      @apps = App.recommended_by(current_user.connections)
+    elsif params[:category_id].present? && params[:connections] == "false"
+      @apps = AppCategory.where(category_id: params[:category_id]).map(&:app)
+    else params[:connections] == "true"
       @apps = App.recommended_by(current_user.connections)
     end
 

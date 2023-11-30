@@ -40,7 +40,7 @@ Connection.create!([
   },
   {
     asker: User.third,
-    receiver: User.first,
+    receiver: User.second,
     status: "accepted"
   }
 ])
@@ -84,12 +84,10 @@ App.create!([{
 
     *Enterprise*
     For companies that need to connect work across teams and enhance org-wide controls, security, and support. Ideal for orgs with 100+ members.",
-  total_votes: 543,
 },
 {
   name: "Notion",
   description: "Notion is a connected workspace where your team can create docs, take notes, manage tasks, and organize your work – all in one place. And now, with Notion AI, you can augment your capabilities in new and unexpected ways. Leverage the power of AI right inside Notion, across all your notes and docs, without the need to jump between your work and a separate AI-powered tool.",
-  total_votes: 5122,
 },
 {
  name: "HubSpot Marketing Hub",
@@ -98,7 +96,6 @@ App.create!([{
   With Marketing Hub, all your marketing tools and data are on one easy-to-use, powerful platform. You’ll save valuable time and get all the context you need to provide a personalized experience that attracts and converts the right customers at scale. Plus, marketers can keep data at the center of everything they do because Marketing Hub is built as part of the HubSpot CRM platform. When using the full CRM platform, marketers can achieve unparalleled alignment with sales to prove ROI and validate investments.
 
   Whether it’s strategies, services, or software — HubSpot allows you to scale your company, not complexity. HubSpot has everything you need to grow better.",
-  total_votes: 87,
 },
 {
  name: "Insider",
@@ -107,7 +104,6 @@ App.create!([{
   Having recently unlocked unicorn status, Insider was also congratulated by NASDAQ for becoming one of the only woman-founded, women-led B2B SaaS unicorns in the world. Insider was named a leader in the Gartner Magic Quadrant for Personalization Engines 2023, The Forrester Wave for Cross-Channel Campaign Management 2021, IDC MarketScape WorldWide Omni-Channel Marketing Platforms for B2C Enterprises 2023 Assessment, and IDC MarketScape: Worldwide Customer Data Platforms Focused on Front-Office Users 2021-22 Vendor Assessment. The company has been named the #6 Best Software Company in the world, according to G2’s Spring’23 reports. Insider is also the #1 G2 Leader in 6+ categories, including Customer Data Platforms (CDP), Personalization Engines, Personalization Software, Mobile Marketing, Customer Journey Analytics, and E-commerce Personalization. CrunchBase recently ranked Insider’s co-founder and CEO Hande Cilingir as one of the top women CEOs outside the US.
 
   One-third of Fortune 500 companies and top brands across retail, automotive, and travel choose Insider to deliver AI-led personalized experiences that exceed customer expectations. Insider is trusted by over 1,200 global businesses, including Singapore Airlines, Estée Lauder, Virgin, Toyota, New Balance, IKEA, GAP, L’Oreal, Samsung, Vodafone, Allianz, Santander, BBVA, Pizza Hut, Newsweek, MediaMarkt, Nissan, AVIS, MAC, Marks & Spencer, Madeira Madeira, Avon, and CNN.",
-  total_votes: 3935,
 }])
 
 p "Created #{App.count} Apps"
@@ -130,27 +126,25 @@ AppCategory.create!([{
   category: Category.second,
 }])
 
-Vote.create!([
-  {
-    user: User.first,
-    app: App.first,
-    vote: 1
-  },
-  {
-    user: User.second,
-    app: App.first,
-    vote: 1
-  },
-  {
-    user: User.first,
-    app: App.second,
-    vote: -1
-  },
-  {
-    user: User.second,
-    app: App.second,
-    vote: 1
-  }
-])
+Vote.create!(
+  user: User.first,
+  app: App.first,
+  vote: 1
+)
+Vote.create!(
+  user: User.second,
+  app: App.first,
+  vote: 1
+)
+Vote.create!(
+  user: User.first,
+  app: App.second,
+  vote: -1
+)
+Vote.create!(
+  user: User.second,
+  app: App.second,
+  vote: 1
+)
 
 p "Created #{AppCategory.count} AppCategories"
