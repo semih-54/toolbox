@@ -27,7 +27,7 @@
       <% end %>
       <%# issue after clicking filters %>
     </div>
-    <div class="filter_button text-center"> Connections Only </div>
+    <%= link_to "Connections only", apps_path(connections: true) %>
     <%# to be a filter, only connection that upvoted the tool %>
   </div>
 

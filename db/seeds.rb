@@ -29,9 +29,21 @@ User.create!([{
   email: "nicho@hotmail.com",
   username: "nicho",
   password: "123456",
-  }])
-  p "Created #{User.count} Users"
+}])
+p "Created #{User.count} Users"
 
+Connection.create!([
+  {
+    asker: User.third,
+    receiver: User.first,
+    status: "accepted"
+  },
+  {
+    asker: User.third,
+    receiver: User.first,
+    status: "accepted"
+  }
+])
 
 Category.create!([{
   name: "Project Management",
@@ -117,5 +129,28 @@ AppCategory.create!([{
   app: App.fourth,
   category: Category.second,
 }])
+
+Vote.create!([
+  {
+    user: User.first,
+    app: App.first,
+    vote: 1
+  },
+  {
+    user: User.second,
+    app: App.first,
+    vote: 1
+  },
+  {
+    user: User.first,
+    app: App.second,
+    vote: -1
+  },
+  {
+    user: User.second,
+    app: App.second,
+    vote: 1
+  }
+])
 
 p "Created #{AppCategory.count} AppCategories"
