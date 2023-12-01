@@ -30,15 +30,15 @@
 
     <div class="toggle pt-2">
       <% if params[:connections] == "true" %>
-        <i class="fa-solid fa-user-group pe-2" style="color: #3282B8">
+        <i class="fa-solid fa-user-group pe-2 " style="color: #3282B8">
         <%= link_to "Off", request.params.merge(connections: false), class: "filter_button" %></i>
       <% else %>
-        <i class="fa-solid fa-user-group pe-2" style="color: #3282B8">
+        <i class="fa-solid fa-user-group pe-2 " style="color: #3282B8">
         <%= link_to "On", request.params.merge(connections: true), class: "filter_button" %></i>
       <% end %>
     </div>
 
   </div>
-  
+
   <%= render "list", apps: @apps %>
 </div>
