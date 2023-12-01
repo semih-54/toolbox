@@ -16,9 +16,19 @@
               <div class="app-categories small">
                 <p> Category: <%= app.categories.map(&:name).join(", ").truncate(App::CATEGORY_LENGTH) %> </p>
                 <p> <strong><%= app.votes.where(vote: 1, user: current_user.friends).count %></strong> connections upvoting </p>
-                <%# current_user.friends.each do |friend| %>
-                <%#= cl_image_tag friend.photo.key, width: 10px, crop: :fill %>
-                <%# end %>
+
+                <% app.votes.where(vote: 1, user: current_user.friends).each do |vote| %>
+                 <% if vote.user.photo.attached? %>
+                   <%= link_to profile_path(voter_id: vote.user.id) do %>
+                    <%= cl_image_tag vote.user.photo.key, class: "rounded-circle border border-white", width: "25px", height: "25px", crop: :fill %>
+                   <% end %>
+                 <% else %>
+                    <%= link_to profile_path(voter_id: vote.user.id) do %>
+                      <%= image_tag "semih_profile.png", class: "rounded-circle border border-white", width: "25px", height: "25px", crop: :fill  %>
+                    <% end %>
+                  <% end %>
+                <% end %>
+
               </div>
             </div>
 
