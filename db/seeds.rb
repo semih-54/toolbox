@@ -36,12 +36,12 @@ Connection.create!([
   {
     asker: User.third,
     receiver: User.first,
-    status: "accepted"
+    confirmed: true
   },
   {
     asker: User.third,
     receiver: User.second,
-    status: "accepted"
+    confirmed: true
   }
 ])
 

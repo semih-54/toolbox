@@ -1,10 +1,16 @@
 <div class="navbar navbar-expand-sm transparent fixed ">
   <div class="container-fluid ">
     <div class="d-flex">
-      <%= link_to root_path  do %>
-      <%= image_tag "toolbox.png", class: "logo"%>
+      <% if user_signed_in? %>
+        <%= link_to apps_path  do %>
+        <%= image_tag "toolbox.png", class: "logo"%>
+        <% end %>
+        <%= link_to "ToolBox", root_path, class:"ToolBox" %>
+      <% else %>
+        <%= link_to root_path  do %>
+        <%= image_tag "toolbox.png", class: "logo"%>
+        <% end %>
       <% end %>
-      <h5>ToolBox</h5>
     </div>
 
     <% if user_signed_in? %>
@@ -13,6 +19,7 @@
           <span class="fas fa-newspaper fa-lg px-1 feed" style="color: #000000;padding-top: 15px;" ></span>
         </button>
         <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end">
+          <%= link_to "Feeds", apps_path, class: "dropdown-item" %>
           <li><a class="dropdown-item" href="#">Something else here</a></li>
           <li><hr class="dropdown-divider"></li>
           <li><a class="dropdown-item" href="#">Separated link</a></li>
@@ -22,9 +29,7 @@
           <span class="fas fa-user-circle fa-lg profile" style="#000000;padding-top: 20px;"></span>
         </button>
         <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end">
-          <li><a class="dropdown-item active" href="#">Action</a></li>
-          <li><a class="dropdown-item" href="#">Another action</a></li>
-          <li><a class="dropdown-item" href="#">Something else here</a></li>
+          <%= link_to "Profile", profile_path, class: "dropdown-item" %>
           <li><hr class="dropdown-divider"></li>
           <%= link_to "Logout", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
         </ul>
