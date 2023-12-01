@@ -4,7 +4,7 @@
       <%= link_to root_path  do %>
       <%= image_tag "toolbox.png", class: "logo"%>
       <% end %>
-      <h5>ToolBox</h5>
+      <%= link_to "ToolBox", root_path, class:"ToolBox" %>
     </div>
 
     <% if user_signed_in? %>
