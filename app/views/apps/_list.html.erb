@@ -16,6 +16,9 @@
               <div class="app-categories small">
                 <p> Category: <%= app.categories.map(&:name).join(", ").truncate(App::CATEGORY_LENGTH) %> </p>
                 <p> <strong><%= app.votes.where(vote: 1, user: current_user.friends).count %></strong> connections upvoting </p>
+                <%# current_user.friends.each do |friend| %>
+                <%#= cl_image_tag friend.photo.key, width: 10px, crop: :fill %>
+                <%# end %>
               </div>
             </div>
 
