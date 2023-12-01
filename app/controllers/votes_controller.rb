@@ -10,8 +10,9 @@ class VotesController < ApplicationController
   end
 
   def update
-    @vote = Vote.find(params[:app_id, :current_user])
-    @vote.update(vote_params)
+    @vote = Vote.find(params[:id])
+    @vote.update(vote: params[:vote])
+    redirect_to apps_path
   end
 
   def destroy
