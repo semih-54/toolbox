@@ -23,15 +23,27 @@
               <br>
               <div class="up text-center mb-1">
                 <%#= link_to app_votes_path(app, vote: 1), data: { turbo_method: :post } do %>
-                <%= button_to app_votes_path(app, vote: 1), method: :post do %>
-                  <i class="fa-solid fa-angles-up fa-xl" style="color: #1eb428;"></i>
+                <% if current_user.apps.include? app %>
+                  <%= button_to vote_path(app, vote: 1), method: :patch do %>
+                    <i class="fa-solid fa-angles-up fa-xl" style="color: #1eb428;"></i>
+                  <% end %>
+                <% else %>
+                  <%= button_to app_votes_path(app, vote: 1), method: :post do %>
+                    <i class="fa-solid fa-angles-up fa-xl" style="color: #1eb428;"></i>
+                  <% end %>
                 <% end %>
               </div>
               <small class="text-align-center font-weight-bold"> <%= app.total_votes %> </small>
               <div class="down text-center mt-1">
                 <%#= link_to app_votes_path(app, vote: -1), data: { turbo_method: :post } do %>
-                <%= button_to app_votes_path(app, vote: -1), method: :post do %>
-                  <i class="fa-solid fa-angles-down fa-xl" style="color: #c40e0e;"></i>
+                <% if current_user.apps.include? app %>
+                  <%= button_to vote_path(app, vote: -1), method: :patch do %>
+                    <i class="fa-solid fa-angles-down fa-xl" style="color: #c40e0e;"></i>
+                  <% end %>
+                <% else %>
+                  <%= button_to app_votes_path(app, vote: -1), method: :post do %>
+                    <i class="fa-solid fa-angles-down fa-xl" style="color: #c40e0e;"></i>
+                  <% end %>
                 <% end %>
               </div>
             </div>
