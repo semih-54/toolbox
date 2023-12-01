@@ -1,10 +1,16 @@
 <div class="navbar navbar-expand-sm transparent fixed ">
   <div class="container-fluid ">
     <div class="d-flex">
-      <%= link_to root_path  do %>
-      <%= image_tag "toolbox.png", class: "logo"%>
+      <% if user_signed_in? %>
+        <%= link_to apps_path  do %>
+        <%= image_tag "toolbox.png", class: "logo"%>
+        <% end %>
+        <%= link_to "ToolBox", root_path, class:"ToolBox" %>
+      <% else %>
+        <%= link_to root_path  do %>
+        <%= image_tag "toolbox.png", class: "logo"%>
+        <% end %>
       <% end %>
-      <%= link_to "ToolBox", root_path, class:"ToolBox" %>
     </div>
 
     <% if user_signed_in? %>
