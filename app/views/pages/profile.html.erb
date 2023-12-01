@@ -28,7 +28,7 @@
       <%= link_to "Generate Link", connections_path, data: { turbo_method: :post } %>
 
         <% if current_user.sent_connections.find_by(receiver: nil) %>
-        www.localhost:3000/users/sign_up?connection_id=<%= current_user.sent_connections.find_by(receiver: nil).id %>
+        https://toolbox.osc-fr1.scalingo.io/users/sign_up?connection_id=<%= user_for_profile.sent_connections.last.id %>
         <% end %>
   <% end %>
 </div>
