@@ -10,3 +10,17 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+
+// custom css
+// show page
+.app-name{
+  color: #3282B8;
+  margin-top: 10px;
+}
+
+.backBtn{
+  color: white;
+  text-decoration: none;
+  font-size: medium;
+  margin: 10px;
+}
