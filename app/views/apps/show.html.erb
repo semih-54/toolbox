@@ -1,5 +1,9 @@
 <div class="container">
-  <div class="app-card">
+ <%= link_to apps_path, class: "backBtn" do %>
+  <i class="fas fa-arrow-left"></i> Back
+ <% end %>
+
+  <div class="app-card mt-2">
     <div class="app d-flex flex-column justify-content mb-3 align-items-center">
       <div class="header d-flex mb-3">
         <%= image_tag "notion.png", width: "130px", height: "130px", crop: :fill %>
