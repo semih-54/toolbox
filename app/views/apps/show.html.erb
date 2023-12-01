@@ -4,12 +4,13 @@
       <div class="header d-flex mb-3">
         <%= image_tag "notion.png", width: "130px", height: "130px", crop: :fill %>
         <div class="header-content px-3">
-          <div class="name"> <h3 class="fw-bold"> <%= @app.name %> </h3> </div>
-          <div class="category"> <p> Category: <%= @app.categories.map(&:name).join(", ") %> </p> </div>
-          <div class="upvotes"> <%= @app.total_votes %> votes </div>
+          <div class="name"> <h3 class="fw-bold app-name"> <%= @app.name %> </h3> </div>
+          <div class="category"> <p> <strong>Category:</strong>  <%= @app.categories.map(&:name).join(", ") %> </p> </div>
+          <div class="upvotes"><strong>Upvotes:</strong> <%= @app.total_votes %>   </div>
         </div>
       </div>
-    <div class="description px-2"> <%= @app.description %> </div>
     </div>
+      <p class="px-3"><strong>Description:</strong></p>
+    <div class="description px-2 text-center"> <%= @app.description %> </div>
   </div>
 </div>

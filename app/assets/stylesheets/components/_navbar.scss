@@ -1,15 +1,22 @@
 .navbar {
   padding: 10px 0;
-  background-color:#DEDEDE;
+  background-color: #3282B8;
+  // background-color:#DEDEDE;
   box-shadow: 0 4px 6px 0 rgba(0,0,0,.2);
   position: sticky;
 }
 
 .ToolBox{
-  color: black;
-  font-size: large;
+  // color: black;
+  // font-size: large;
+  // text-decoration: none;
+  font-size: 25px;
+  color: white ;
+  font-weight: 600;
+  text-shadow: 2px 2px 4px #000000;
   text-decoration: none;
-  padding: 8px;
+  padding-left: 7px;
+  padding-top: 5px;
 }
 
 .nav-link{
@@ -24,7 +31,8 @@
 .logo{
   height: 40px;
   width: 40px;
-}
+  margin-bottom: 10px;
+  }
 
 .feed-btn,
 .profile-btn {
@@ -33,6 +41,7 @@
   cursor: pointer;
   padding: 0;
   margin: 0 5px;
+  text-shadow: 2px 2px 4px #000000;
 }
 
 .feed-btn,
