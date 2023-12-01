@@ -1,17 +1,16 @@
 class VotesController < ApplicationController
   def create
     @app = App.find(params[:app_id])
-    @vote = Vote.new
+    @vote = Vote.new(vote_params)
     @vote.user = current_user
-    @vote.app = @app
-    @vote.vote = params[:vote]
     @vote.save
     redirect_to apps_path
   end
 
   def update
-    @vote = Vote.find(params[:app_id, :current_user])
+    @vote = Vote.find(params[:id])
     @vote.update(vote_params)
+    redirect_to apps_path
   end
 
   def destroy
@@ -23,6 +22,6 @@ class VotesController < ApplicationController
   private
 
   def vote_params
-    params.require(:vote).permit(:user_id, :app_id)
+    params.permit(:app_id, :vote)
   end
 end

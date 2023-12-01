@@ -1,16 +1,22 @@
 <div class="navbar navbar-expand-sm transparent fixed ">
   <div class="container-fluid ">
     <div class="d-flex">
-      <%= link_to root_path  do %>
-      <%= image_tag "toolbox.png", class: "logo"%>
+      <% if user_signed_in? %>
+        <%= link_to apps_path  do %>
+        <%= image_tag "toolbox.png", class: "logo"%>
+        <% end %>
+        <%= link_to "ToolBox", root_path, class:"ToolBox" %>
+      <% else %>
+        <%= link_to root_path  do %>
+        <%= image_tag "toolbox.png", class: "logo"%>
+        <% end %>
       <% end %>
-      <%= link_to "ToolBox", root_path, class:"ToolBox" %>
     </div>
 
     <% if user_signed_in? %>
      <div class="d-flex">
         <button type="button" class="feed-btn" data-bs-toggle="dropdown" aria-expanded="false ">
-          <span class="fas fa-newspaper fa-lg px-1 feed" style="color: #000000;padding-top: 15px;" ></span>
+          <span class="fas fa-newspaper fa-lg px-1 feed" style="color: #ffffff;padding-top: 15px;" ></span>
         </button>
         <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end">
           <%= link_to "Feeds", apps_path, class: "dropdown-item" %>
@@ -20,7 +26,7 @@
         </ul>
 
         <button type="button" class="profile-btn" data-bs-toggle="dropdown" aria-expanded="false">
-          <span class="fas fa-user-circle fa-lg profile" style="#000000;padding-top: 20px;"></span>
+          <span class="fas fa-user-circle fa-lg profile" style="color: #ffffff;padding-top: 20px;"></span>
         </button>
         <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end">
           <%= link_to "Profile", profile_path, class: "dropdown-item" %>

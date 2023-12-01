@@ -29,6 +29,11 @@ class AppsController < ApplicationController
     # end
 
     @categories = Category.all
+
+    respond_to do |format|
+      format.html # Follow regular flow of Rails
+      format.text { render partial: "apps/list", locals: {apps: @apps}, formats: [:html] }
+    end
   end
 
   def show
