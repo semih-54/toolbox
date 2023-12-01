@@ -15,7 +15,7 @@
 
               <div class="app-categories small">
                 <p> Category: <%= app.categories.map(&:name).join(", ").truncate(App::CATEGORY_LENGTH) %> </p>
-                <p> <strong><%= app.votes.where(vote: 1, user: current_user.connections).count %></strong> connections upvoting </p>
+                <p> <strong><%= app.votes.where(vote: 1, user: current_user.friends).count %></strong> connections upvoting </p>
               </div>
             </div>
 
