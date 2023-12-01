@@ -1,14 +1,50 @@
-.navbar{
-  color: wheat;
+.navbar {
+  padding: 10px 0;
+  background-color:#DEDEDE;
+  box-shadow: 0 4px 6px 0 rgba(0,0,0,.2);
+  position: sticky;
+}
+
+.navbar h5{
+  padding-left: 12px;
+  padding-top: 8px;
+}
+
+.nav-link{
+  color: black;
 }
 
 .nav{
   border-bottom: 1px solid black;
-  padding-bottom: 20px;
   align-items: center;
 }
 
 .logo{
   height: 40px;
   width: 40px;
+}
+
+.feed-btn,
+.profile-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0 5px;
+}
+
+.feed-btn,
+.profile {
+  height: 40px;
+  width: 40px;
+}
+
+.dropdown-menu-dark {
+  background-color: #343a40;
+  color: white;
+}
+
+
+.dropdown-divider {
+  border-color: white;
 }
