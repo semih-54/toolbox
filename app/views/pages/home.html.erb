@@ -1,7 +1,7 @@
 <%= image_tag "banner.png", class: "banner-img"%>
 <div>
   <div class="scroll">
-    <h4 class="text-white text-center mt-4">Explore Tools</h4>
+    <h3 class="text-white text-center mt-4">Explore Tools</h3>
     <% if user_signed_in? %>
       <div class="text-center mt-4">
         <%= link_to "Search", apps_path, class:"btn btn-primary"%>
@@ -43,7 +43,7 @@
 </div>
 
 <div class="container container-fluid">
-  <h1 class="text-white text-center py-3 text-decoration-underline">About us</h1>
+  <h3 class="text-white text-center py-3 ">About us</h3>
   <p class="text-white" >
     ToolBox is a user friendly web application used for startups company
     who is confused on what tools they should use for certain categories.
@@ -57,10 +57,13 @@
   <div class="container-fluid">
     <div class="row">
       <div data-controller="reveal">
-        <h4 data-action="click->reveal#toggle" class="text-white">Contact us</h4>
+        <div class="d-flex flex-row">
+          <h4 data-action="click->reveal#toggle" class="text-white">Contact us</h4>
+          <i class="fa-solid fa-caret-down px-2 mt-1" style="color: #ffffff;"></i>
+        </div>
         <div class="dropdown-content d-none" data-reveal-target="toggle">
           <div class="contact-info d-flex">
-            <i class="fa-solid fa-phone " style="color: #ffffff; padding-right: 5px;"></i>
+            <i class="fa-solid fa-phone " style="color: #ffffff; padding-right: 5px; "></i>
             <p class="text-white">+1 (123) 456-7890</p>
           </div>
           <div class="contact-info d-flex">
@@ -79,7 +82,10 @@
   <div class="container-fluid pt-5">
     <div class="row">
       <div data-controller="reveal">
-        <h4 data-action="click->reveal#toggle" class="text-white">Social Media</h4>
+        <div class="d-flex flex-row">
+          <h4 data-action="click->reveal#toggle" class="text-white">Social Media</h4>
+          <i class="fa-solid fa-caret-down px-2 mt-1" style="color: #ffffff;"></i>
+        </div>
         <div class="dropdown-content d-none" data-reveal-target="toggle">
           <div class="contact-info d-flex">
             <i class="fa-brands fa-instagram" style="color: #ffffff; padding-right: 5px;"></i>
