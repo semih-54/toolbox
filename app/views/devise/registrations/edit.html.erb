@@ -11,6 +11,7 @@
     <% end %>
 
     <%= f.input :username, required: true %>
+    <%= f.input :photo, as: :file %>
     <%= f.input :password,
                 hint: "leave it blank if you don't want to change it",
                 required: false,

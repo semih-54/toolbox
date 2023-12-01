@@ -4,19 +4,30 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_one_attached :photo
   has_many :votes
   has_many :apps, through: :votes
+  has_many :sent_connections, class_name: 'Connection', foreign_key: "asker_id"
+  has_many :received_connections, class_name: 'Connection', foreign_key: "receiver_id"
+  has_many :pending_connections, -> {where confirmed: false}, class_name: 'Connection', foreign_key: "receiver_id"
 
-  def connections
-    Connection
-      .where("(asker_id = ? OR receiver_id = ?) AND status='accepted'", id, id)
-      .map { |connection| connection.asker == self ? connection.receiver : connection.asker }
+  # def create_connection
+  #   raise
+  #   Connection.new(as)
+  # end
+
+  def friends
+    friends_i_sent_link = Connection.where(asker_id: id, confirmed: true).pluck(:receiver_id)
+    friends_i_got_link = Connection.where(receiver_id: id, confirmed: true).pluck(:asker_id)
+    ids = friends_i_sent_link + friends_i_got_link
+    User.where(id: ids)
   end
 
-  def connected_with?(user)
-    asked = connections.where("(asker_id = ? AND receiver_id = ?) AND status='accepted'", id, user.id).any?
-    received = connections.where("(asker_id = ? AND receiver_id = ?) AND status='accepted'", user.id, id).any?
+  def connected?(user)
+    Connection.confirmed_record?(id, user.id)
+  end
 
-    asked || received
+  def send_link(user)
+    connections.create(receiver_id: user.id)
   end
 end
