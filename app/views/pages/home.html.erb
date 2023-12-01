@@ -1,4 +1,46 @@
 <%= image_tag "banner.png", class: "banner-img"%>
+<div>
+  <div class="scroll">
+    <h4 class="text-white text-center mt-4">Explore Tools</h4>
+    <% if user_signed_in? %>
+      <div class="text-center mt-4">
+        <%= link_to "Search", apps_path, class:"btn btn-primary"%>
+      </div>
+    <% else %>
+      <div class="text-center mt-4">
+        <%= link_to "Sign Up",  new_user_registration_path, class:"btn btn-primary"%>
+      </div>
+    <% end %>
+
+    <div class="m-scroll">
+      <span class="moving-logo"><%= image_tag "notion.png", alt: "Notion Logo", class:"logozzz" %></span>
+      <span class="moving-logo"><%= image_tag "asana.png", alt: "Asana Logo", class:"logozzz" %></span>
+      <span class="moving-logo"><%= image_tag "ninjaone.png", alt: "Ninjaone Logo", class:"logozzz" %></span>
+      <span class="moving-logo"><%= image_tag "trello.webp", alt: "Trello Logo", class:"logozzz" %></span>
+      <span class="moving-logo"><%= image_tag "shopify.png", alt: "Shopify Logo", class:"logozzz" %></span>
+      <span class="moving-logo"><%= image_tag "mailchimp.png", alt: "Mailchimp Logo", class:"logozzz" %></span>
+      <span class="moving-logo"><%= image_tag "canva.png", alt: "Canva Logo", class:"logozzz" %></span>
+      <span class="moving-logo"><%= image_tag "notion.png", alt: "Notion Logo", class:"logozzz" %></span>
+      <span class="moving-logo"><%= image_tag "asana.png", alt: "Asana Logo", class:"logozzz" %></span>
+      <span class="moving-logo"><%= image_tag "ninjaone.png", alt: "Ninjaone Logo", class:"logozzz" %></span>
+      <span class="moving-logo"><%= image_tag "trello.webp", alt: "Trello Logo", class:"logozzz" %></span>
+    </div>
+
+    <div class="m-scroll-2">
+      <span class="moving-logo"><%= image_tag "notion.png", alt: "Notion Logo", class:"logozzz" %></span>
+      <span class="moving-logo"><%= image_tag "asana.png", alt: "Asana Logo", class:"logozzz" %></span>
+      <span class="moving-logo"><%= image_tag "trello.webp", alt: "Trello Logo", class:"logozzz" %></span>
+      <span class="moving-logo"><%= image_tag "shopify.png", alt: "Shopify Logo", class:"logozzz" %></span>
+      <span class="moving-logo"><%= image_tag "mailchimp.png", alt: "Mailchimp Logo", class:"logozzz" %></span>
+      <span class="moving-logo"><%= image_tag "canva.png", alt: "Canva Logo", class:"logozzz" %></span>
+      <span class="moving-logo"><%= image_tag "ninjaone.png", alt: "Ninjaone Logo", class:"logozzz" %></span>
+      <span class="moving-logo"><%= image_tag "asana.png", alt: "Asana Logo", class:"logozzz" %></span>
+      <span class="moving-logo"><%= image_tag "ninjaone.png", alt: "Ninjaone Logo", class:"logozzz" %></span>
+      <span class="moving-logo"><%= image_tag "trello.webp", alt: "Trello Logo", class:"logozzz" %></span>
+      <span class="moving-logo"><%= image_tag "notion.png", alt: "Notion Logo", class:"logozzz" %></span>
+    </div>
+  </div>
+</div>
 
 <div class="container container-fluid">
   <h1 class="text-white text-center py-3 text-decoration-underline">About us</h1>
