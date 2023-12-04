@@ -24,3 +24,34 @@
   font-size: medium;
   margin: 10px;
 }
+
+// profile page
+.btn-middle-blue {
+  background-color: #0F4C75 !important;
+  border-color: #0F4C75 !important ;
+}
+
+.btn-light-blue {
+  background-color: #3282B8 !important;
+  border-color: #3282B8 !important ;
+}
+
+.modal-content {
+  background-color: #1B262C ;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.border-top {
+  border-top: 1px;
+  border-color: #0F4C75 ;
+}
+
+
+// devise registration new
+.connection-id {
+  display: none;
+}
