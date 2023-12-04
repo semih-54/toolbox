@@ -15,9 +15,9 @@
         <div class="connection-item">
           <p>
             <% if item.asker == current_user %>
-              <strong>New connection:</strong> <%= link_to item.receiver.username, profile_path(user: item.receiver.id), class: "text-decoration-none" %> has accepted your invitation.
+              <strong>New connection - <%= link_to item.receiver.username, profile_path(user: item.receiver.id), class: "text-decoration-none" %> </strong> has accepted your invitation.
             <% else %>
-              <strong>New connection:</strong> you accepted invitation from <%= link_to item.asker.username, profile_path(user: item.asker.id), class: "text-decoration-none" %>.
+              <strong>New connection - </strong> you accepted invitation from <strong> <%= link_to item.asker.username, profile_path(user: item.asker.id), class: "text-decoration-none" %> </strong>.
             <% end %>
           </p>
         </div>
@@ -27,7 +27,7 @@
         </div>
       <% when 'Vote' %>
         <div class="vote-item">
-          <p><strong>Recent vote:</strong> <%= link_to item.user.username, profile_path(user: item.user.id), class: "text-decoration-none" %> voted <%= item.vote %> on <%= link_to item.app.name, app_path(item.app) %></p>
+          <p><strong>New vote - <%= link_to item.user.username, profile_path(user: item.user.id), class: "text-decoration-none" %> </strong>  voted <%= item.vote %> on <%= link_to item.app.name, app_path(item.app) %></p>
         </div>
       <% else %>
         <p>Unknown activity type</p>
