@@ -1,0 +1,35 @@
+
+<h3> Your Feed <h3>
+<p> See most recent activities from your connections </p>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="row">
+          <% @connections_asked.each do |activity| %>
+            <div class="col-12">
+              <div class="card">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-2">
+                      <% if activity.receiver.user.photo.attached? %>
+                        <%= cl_image_tag activity.user.photo.key, class: "rounded-circle border border-white", width: "25px", height: "25px", crop: :fill %>
+                      <% else %>
+                        <%= image_tag "semih_profile.png", class: "rounded-circle border border-white", width: "25px", height: "25px", crop: :fill  %>
+                      <% end %>
+                    </div>
+                    <div class="col-10">
+                      <p class="card-text">
+                        <%= link_to activity.receiver.user.username, profile_path(user_id: activity.receiver.user.id), class:"text-decoration-none" %>
+                        <p> <%= activity.receiver.user.username %> has accepted your invitation. </p>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
