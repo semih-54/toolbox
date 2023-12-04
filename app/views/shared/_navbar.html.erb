@@ -17,13 +17,17 @@
      <div class="d-flex">
         <%= link_to feed_path do %>
         <button type="button" class="feed-btn">
-          <span class="fas fa-newspaper fa-lg px-1 feed" style="color: #ffffff;padding-top: 15px;" ></span>
+          <span class="fas fa-newspaper fa-xl px-1 feed" style="color: #ffffff;padding-top: 15px;" ></span>
         </button>
         <% end %>
 
 
         <button type="button" class="profile-btn" data-bs-toggle="dropdown" aria-expanded="false">
-          <span class="fas fa-user-circle fa-lg profile" style="color: #ffffff;padding-top: 20px;"></span>
+          <% if current_user.photo.attached? %>
+            <%= cl_image_tag current_user.photo.key, class: "rounded-circle border border-white profile-btn", height: 28, width: 28, crop: :fill , style: "box-shadow: 2px 2px 4px black"%>
+          <% else %>
+            <%= image_tag "avatar_placeholder.jpg", class: "rounded-circle border border-white profile-btn", height: 28, width: 28, crop: :fill, style: "box-shadow: 2px 2px 4px black "  %>
+          <% end %>
         </button>
         <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end">
           <%= link_to "Profile", profile_path, class: "dropdown-item" %>

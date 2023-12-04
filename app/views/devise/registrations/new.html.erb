@@ -4,8 +4,7 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <input type="number" name="connection_id" value=<%= params[:connection_id] %>>
-
+    <%= hidden_field_tag :connection_id, params[:connection_id] %>
     <%= f.input :email,
                 required: true,
                 autofocus: true,
