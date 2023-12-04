@@ -1,5 +1,5 @@
 class App < ApplicationRecord
-  DESCRIPTION_LENGTH = 50
+  DESCRIPTION_LENGTH = 150
   NAME_LENGTH = 17
   CATEGORY_LENGTH = 30
 
@@ -8,6 +8,7 @@ class App < ApplicationRecord
 
   has_many :app_categories
   has_many :categories, through: :app_categories
+  has_many :comments
 
   def self.recommended_by(connections)
     App.joins(:votes).where(votes: { user: connections, vote: 1 }).group(:id)
