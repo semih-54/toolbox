@@ -126,6 +126,8 @@ AppCategory.create!([{
   category: Category.second,
 }])
 
+p "Created #{AppCategory.count} AppCategories"
+
 Vote.create!(
   user: User.first,
   app: App.first,
@@ -147,4 +149,27 @@ Vote.create!(
   vote: 1
 )
 
-p "Created #{AppCategory.count} AppCategories"
+p "Created #{Vote.count} Votes"
+
+Comment.create!(
+  user: User.first,
+  app: App.first,
+  comment: "My favourite app for project management. I simply use it every day for both professional and personal apps."
+)
+Comment.create!(
+  user: User.second,
+  app: App.first,
+  comment: "I recently changed from Notion to Trello, i prefer the UX and the functionalities of Trello."
+)
+Comment.create!(
+  user: User.first,
+  app: App.second,
+  comment: "Ive been disapointed by Notion, recently changed to Trello, i prefer the UX and the functionalities of Trello."
+)
+Comment.create!(
+  user: User.second,
+  app: App.second,
+  comment: "Similar to Trello, i actually use both."
+)
+
+p "Created #{Comment.count} comments"
