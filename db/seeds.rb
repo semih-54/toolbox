@@ -47,15 +47,42 @@ Connection.create!([
 ])
 
 Category.create!([{
-  name: "Project Management",
+    name: "Sales Tools"
   },
   {
-  name: "Marketing Automation",
+    name: "Marketing"
   },
   {
-  name: "Accounting",
-  }])
+    name: "Commerce"
+  },
+  {
+    name: "Video Design"
+  },
+  {
+    name: "IT Management"
+  },
+  {
+    name: "Security"
+  }
+  ])
+
 p "Created #{Category.count} Categories"
+
+
+# Open csv and loop through each record
+  # For each record, create an app
+  CSV.foreach(filepath, headers: :first_row) do |row|
+    puts "#{row['First Name']} #{row['Last Name']} played #{row['Instrument']}"
+    app = App.create!(
+      name: row['title'],
+      description: row['description'],
+      logo_url: row['image']
+    )
+
+    AppCategory.create!(app: app, category: Category.find_by(name: row['category']))
+  end
+  # for the app created, create an app_category by setting its app_id and category_id
+
 
 App.create!([{
   name: "Trello",
