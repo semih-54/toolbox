@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_04_024342) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_05_084953) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -57,6 +57,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_04_024342) do
     t.integer "total_votes", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "logo_url"
   end
 
   create_table "categories", force: :cascade do |t|
