@@ -4,7 +4,7 @@
         <div class="app d-flex justify-content mb-3 align-items-center">
 
           <%= link_to app_path(app) do %>
-            <%= image_tag "notion.png", width: "80px", height: "80px", crop: :fill %>
+            <%= image_tag app.logo_url, width: "80px", height: "80px", crop: :fill %>
           <% end %>
 
           <div class="content-up-down-row d-flex flex-grow-1">
