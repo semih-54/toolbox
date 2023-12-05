@@ -8,7 +8,6 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-Comment.destroy_all
 Vote.destroy_all
 AppCategory.destroy_all
 App.destroy_all
@@ -47,24 +46,14 @@ Connection.create!([
 ])
 
 Category.create!([{
-    name: "Sales Tools"
+   name: "Project Management",
   },
   {
-    name: "Marketing"
+    name: "Marketing Automation",
   },
   {
-    name: "Commerce"
-  },
-  {
-    name: "Video Design"
-  },
-  {
-    name: "IT Management"
-  },
-  {
-    name: "Security"
-  }
-  ])
+    name: "Accounting",
+  }])
 
 p "Created #{Category.count} Categories"
 
