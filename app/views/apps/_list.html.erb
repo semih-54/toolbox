@@ -15,7 +15,42 @@
 
               <div class="app-categories small">
                 <p> Category: <%= app.categories.map(&:name).join(", ").truncate(App::CATEGORY_LENGTH) %> </p>
-                <p> <strong><%= app.votes.where(vote: 1, user: current_user.friends).count %></strong> connections upvoting </p>
+
+                <div>
+                  <p data-bs-toggle="modal" data-bs-target="#exampleModal"> <strong><%= app.votes.where(vote: 1, user: current_user.friends).count %></strong> connections upvoting <i class="fa-solid fa-arrow-up-right-from-square"></i></h2>
+                </div>
+
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable ">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <p class="modal-title fs-5 text-white" id="exampleModalLabel">Your connections upvoting</p>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <div>
+                          <% app.votes.where(vote: 1, user: current_user.friends).each do |vote| %>
+                          <div class="friends--box-wrapper d-flex align-items-center">
+                            <% if vote.user.photo.attached? %>
+                              <%= link_to profile_path(voter_id: vote.user.id) do %>
+                                <%= cl_image_tag vote.user.photo.key, class: "rounded-circle border border-white", width: "25px", height: "25px", crop: :fill %>
+                              <% end %>
+                            <% else %>
+                                <%= link_to profile_path(voter_id: vote.user.id) do %>
+                                  <%= image_tag "semih_profile.png", class: "rounded-circle border border-white", width: "25px", height: "25px", crop: :fill  %>
+                                <% end %>
+                              <% end %>
+                              <div class="p-2 text-white"><h2><%= vote.user.username%></h2></div>
+                            </div>
+                            <% end %>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
                 <% app.votes.where(vote: 1, user: current_user.friends).each do |vote| %>
                  <% if vote.user.photo.attached? %>
@@ -31,38 +66,12 @@
 
               </div>
             </div>
-
-            <div class="up-down p-1 me-1">
-              <br>
-              <div class="up text-center mb-1">
-                <%#= link_to app_votes_path(app, vote: 1), data: { turbo_method: :post } do %>
-                <% if current_user.apps.include? app %>
-                  <%= button_to vote_path(app, vote: 1), method: :patch do %>
-                    <i class="fa-solid fa-angles-up fa-xl" style="color: #1eb428;"></i>
-                  <% end %>
-                <% else %>
-                  <%= button_to app_votes_path(app, vote: 1), method: :post do %>
-                    <i class="fa-solid fa-angles-up fa-xl" style="color: #1eb428;"></i>
-                  <% end %>
-                <% end %>
-              </div>
-              <small class="text-align-center font-weight-bold"> <%= app.total_votes %> </small>
-              <div class="down text-center mt-1">
-                <%#= link_to app_votes_path(app, vote: -1), data: { turbo_method: :post } do %>
-                <% if current_user.apps.include? app %>
-                  <%= button_to vote_path(app, vote: -1), method: :patch do %>
-                    <i class="fa-solid fa-angles-down fa-xl" style="color: #c40e0e;"></i>
-                  <% end %>
-                <% else %>
-                  <%= button_to app_votes_path(app, vote: -1), method: :post do %>
-                    <i class="fa-solid fa-angles-down fa-xl" style="color: #c40e0e;"></i>
-                  <% end %>
-                <% end %>
+            <div class="up-down text-center p-1 me-1">
+              <%= render "vote_buttons", app: app %>
               </div>
             </div>
           </div>
 
         </div>
-      </div>
     <% end %>
-  </div>
+</div>

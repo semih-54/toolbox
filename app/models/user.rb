@@ -8,7 +8,9 @@ class User < ApplicationRecord
 
   has_one_attached :photo
   has_many :votes
-  has_many :apps, through: :votes
+  has_many :apps, through: :votes, as: :voted_apps
+  has_many :comments
+  has_many :apps, through: :comments, as: :commented_apps
   has_many :sent_connections, class_name: 'Connection', foreign_key: "asker_id"
   has_many :received_connections, class_name: 'Connection', foreign_key: "receiver_id"
   has_many :pending_connections, -> {where confirmed: false}, class_name: 'Connection', foreign_key: "receiver_id"
@@ -17,6 +19,14 @@ class User < ApplicationRecord
   #   raise
   #   Connection.new(as)
   # end
+
+  def voted?(app)
+    votes.where(app: app).any?
+  end
+
+  def vote_of(app)
+    votes.find_by(app: app)
+  end
 
   def friends
     friends_i_sent_link = Connection.where(asker_id: id, confirmed: true).pluck(:receiver_id)
