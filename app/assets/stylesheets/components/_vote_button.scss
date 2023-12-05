@@ -1,0 +1,14 @@
+.vote {
+  border: 1px solid $light-gray;
+  border-radius: 3px;
+  padding: 0.5em;
+  margin: 0.5em 0;
+  text-align: center;
+  cursor: pointer;
+  &.upvoted {
+    border-color: $green;
+  }
+  &.downvoted {
+    border-color: $red;
+  }
+}

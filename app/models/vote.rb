@@ -6,8 +6,18 @@ class Vote < ApplicationRecord
 
   after_save :update_app_total_votes
 
+  def upvoted?
+    vote == 1
+  end
+
+  def downvoted?
+    vote == -1
+  end
+
+  private
+
   def update_app_total_votes
-    total_votes = app.total_votes + vote
-    app.update(total_votes: total_votes)
+    votes = Vote.where(app: app).sum(:vote)
+    app.update(total_votes: votes)
   end
 end
