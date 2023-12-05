@@ -16,11 +16,11 @@
               <div class="app-categories small">
                 <p> Category: <%= app.categories.map(&:name).join(", ").truncate(App::CATEGORY_LENGTH) %> </p>
 
-                <div>
-                  <p data-bs-toggle="modal" data-bs-target="#exampleModal"> <strong><%= app.votes.where(vote: 1, user: current_user.friends).count %></strong> Connections voted <i class="fa-solid fa-arrow-up-right-from-square"></i></h2>
-                </div>
+                <%# Modal Button %>
+                <p data-bs-toggle="modal" data-bs-target="#exampleModal<%= app.id %>"> <strong><%= app.votes.where(vote: 1, user: current_user.friends).count %></strong> connections upvoting <i class="fa-solid fa-arrow-up-right-from-square"></i></h2>
 
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <%# Modal Pop Up %>
+                <div class="modal fade" id="exampleModal<%= app.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable ">
                     <div class="modal-content">
                       <div class="modal-header">

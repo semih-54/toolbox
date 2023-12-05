@@ -30,11 +30,11 @@
 
     <div class="toggle pt-2">
       <% if params[:connections] == "true" %>
-        <i class="fa-solid fa-user-group pe-2 " style="color: #3282B8">
-        <%= link_to "Off", request.params.merge(connections: false), class: "filter_button" %></i>
+        <i class="fa-solid fa-user-group pe-2 " style="color: #F4F4F4">
+        <%= link_to "Only", request.params.merge(connections: false), class: "filter_button_on" %></i>
       <% else %>
         <i class="fa-solid fa-user-group pe-2 " style="color: #3282B8">
-        <%= link_to "On", request.params.merge(connections: true), class: "filter_button" %></i>
+        <%= link_to "Only", request.params.merge(connections: true), class: "filter_button" %></i>
       <% end %>
     </div>
 
