@@ -8,6 +8,7 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
+Comment.destroy_all
 Vote.destroy_all
 AppCategory.destroy_all
 App.destroy_all
