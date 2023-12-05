@@ -1,22 +1,20 @@
 .navbar {
   padding: 10px 0;
-  background-color: #3282B8;
+  background-color: #1C4EA3;
   // background-color:#DEDEDE;
   box-shadow: 0 4px 6px 0 rgba(0,0,0,.2);
   position: sticky;
 }
 
-.ToolBox{
-  // color: black;
-  // font-size: large;
-  // text-decoration: none;
-  font-size: 25px;
+.ToolBox {
+  color: white;
+  text-decoration: none;
   color: white ;
-  font-weight: 600;
   text-shadow: 2px 2px 4px #000000;
   text-decoration: none;
   padding-left: 7px;
   padding-top: 5px;
+  font-family: $headers-font;
 }
 
 .nav-link{
