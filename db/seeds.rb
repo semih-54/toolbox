@@ -7,9 +7,10 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
-
+require 'csv'
 Vote.destroy_all
 AppCategory.destroy_all
+Comment.destroy_all
 App.destroy_all
 Category.destroy_all
 Connection.destroy_all
@@ -45,33 +46,34 @@ Connection.create!([
   }
 ])
 
-Category.create!([{
-   name: "Project Management",
-  },
-  {
-    name: "Marketing Automation",
-  },
-  {
-    name: "Accounting",
-  }])
+Category.create!([
+  { name: "Sales Tools" },
+  { name: "Marketing" },
+  { name: "Commerce" },
+  { name: "Video Design" },
+  { name: "IT Management" },
+  { name: "Security" }
+])
 
 p "Created #{Category.count} Categories"
 
-
 # Open csv and loop through each record
-  # For each record, create an app
-  CSV.foreach(filepath, headers: :first_row) do |row|
-    puts "#{row['First Name']} #{row['Last Name']} played #{row['Instrument']}"
-    app = App.create!(
-      name: row['title'],
-      description: row['description'],
-      logo_url: row['image']
-    )
+# For each record, create an app
 
-    AppCategory.create!(app: app, category: Category.find_by(name: row['category']))
-  end
-  # for the app created, create an app_category by setting its app_id and category_id
+filepath = File.join(__dir__, 'tools.csv')
+p filepath
 
+CSV.foreach(filepath, headers: :first_row) do |row|
+  p row
+  app = App.create!(
+    name: row['title'],
+    description: row['description'],
+    logo_url: row['image']
+  )
+  category = Category.find_by(name: row['category'])
+  AppCategory.create!(app: app, category: category)
+end
+# for the app created, create an app_category by setting its app_id and category_id
 
 App.create!([{
   name: "Trello",
