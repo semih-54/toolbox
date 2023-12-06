@@ -68,7 +68,8 @@ CSV.foreach(filepath, headers: :first_row) do |row|
   app = App.create!(
     name: row['title'],
     description: row['description'],
-    logo_url: row['image']
+    logo_url: row['image'],
+    total_vote_g2: row['review number'].to_i
   )
   category = Category.find_by(name: row['category'])
   AppCategory.create!(app: app, category: category)
@@ -117,6 +118,10 @@ Vote.create!(
   app: App.second,
   vote: 1
 )
+
+App.all.each do |app|
+  Vote.create
+end
 
 p "Created #{Vote.count} Votes"
 

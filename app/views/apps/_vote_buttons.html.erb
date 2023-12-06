@@ -27,7 +27,7 @@
         <% end %>
       </div>
 
-      <small class="font-weight-bold"> <%= app.total_votes %> </small>
+      <small class="font-weight-bold"> <strong> <%= app.total_votes %> </strong> </small>
 
       <div class="down mt-1">
         <%= button_to app_votes_path(app, vote: -1),
