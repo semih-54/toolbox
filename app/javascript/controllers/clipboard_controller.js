@@ -6,6 +6,9 @@ export default class extends Controller {
     feedbackText: String
   }
 
+  connect() {
+  }
+
   copy(event) {
     this.inputTarget.select();
     document.execCommand('copy');
