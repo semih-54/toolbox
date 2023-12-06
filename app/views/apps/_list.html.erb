@@ -8,7 +8,7 @@
           </div>
 
           <div class="app-name">
-              <small class="total_votes"> <%= app.total_vote_g2 %> </small>
+              <small class="total_votes"> <%= app.total_votes %> </small>
             </div>
         </div>
 
@@ -40,6 +40,41 @@
                 <% end %>
               <% end %>
               <!--total friends upvote-->
+              <%# Modal Button %>
+                <p data-bs-toggle="modal" data-bs-target="#exampleModal<%= app.id %>" class="text-white"> <strong><%= app.votes.where(vote: 1, user: current_user.friends).count %></strong> <small>connections upvoting</small> <i class="fa-solid fa-arrow-up-right-from-square"></i></h2>
+
+                <%# Modal Pop Up %>
+                <div class="modal fade" id="exampleModal<%= app.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable ">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <p class="modal-title fs-5 text-white" id="exampleModalLabel">Connections voted</p>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <div>
+                          <% app.votes.where(vote: 1, user: current_user.friends).each do |vote| %>
+                          <div class="friends--box-wrapper d-flex align-items-center">
+                            <% if vote.user.photo.attached? %>
+                              <%= link_to profile_path(user_id: vote.user.id) do %>
+                                <%= cl_image_tag vote.user.photo.key, class: "rounded-circle border border-white", width: "25px", height: "25px", crop: :fill %>
+                              <% end %>
+                            <% else %>
+                                <%= link_to profile_path(user_id: vote.user.id) do %>
+                                  <%= image_tag "semih_profile.png", class: "rounded-circle border border-white", width: "25px", height: "25px", crop: :fill  %>
+                                <% end %>
+                              <% end %>
+                              <div class="p-2 text-white"><h2><%= vote.user.username%></h2></div>
+                            </div>
+                            <% end %>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
             </div>
 
             <!--if downvoted

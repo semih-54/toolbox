@@ -6,9 +6,7 @@
   <div class="app-card mt-2">
     <div class="app d-flex flex-column justify-content mb-3 align-items-center">
       <div class="header d-flex mb-3">
-        <%= link_to app_path(app) do %>
-            <%= image_tag app.logo_url, width: "130px", height: "130px", crop: :fill %>
-          <% end %>
+            <%= image_tag @app.logo_url, width: "130px", height: "130px", crop: :fill %>
         <div class="header-content px-3">
           <div class="name"> <h3 class="fw-bold app-name"> <%= @app.name %> </h3> </div>
           <div class="category"> <p> <strong>Category:</strong>  <%= @app.categories.map(&:name).join(", ") %> </p> </div>
