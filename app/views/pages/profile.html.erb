@@ -2,8 +2,8 @@
   <div class="text-white text-center">
 
     <h1 class="fw-bold">Your Account</h1>
-    <% if params["voter_id"] %>
-      <% user_for_profile = User.find(params["voter_id"]) %>
+    <% if params["user_id"] %>
+      <% user_for_profile = User.find(params["user_id"]) %>
     <% else %>
       <% user_for_profile = current_user %>
     <% end %>
