@@ -8,7 +8,7 @@
           </div>
 
           <div class="app-name">
-              <small class="total_votes"> <%= app.total_votes %> </small>
+              <small class="total_votes"> <%= app.total_vote_g2 %> </small>
             </div>
         </div>
 
@@ -27,7 +27,7 @@
             </div>
 
             <!--if upvoted-->
-            <div class="upvoted-profile d-flex">
+            <div class="upvoted-profile">
               <% app.votes.where(vote: 1, user: current_user.friends).each do |vote| %>
                 <% if vote.user.photo.attached? %>
                   <%= link_to profile_path(voter_id: vote.user.id) do %>
@@ -42,7 +42,7 @@
               <!--total friends upvote-->
             </div>
 
-            <!--if downvoted-->
+            <!--if downvoted
             <div class="downvoted-profile d-flex">
               <% app.votes.where(vote: 1, user: current_user.friends).each do |vote| %>
                 <% if vote.user.photo.attached? %>
@@ -55,9 +55,9 @@
                   <% end %>
                 <% end %>
               <% end %>
-              <!--total friends downvote-->
+              <total friends downvote>
 
-            </div>
+            </div>-->
           </div>
 
           <div class="end-of-container">
