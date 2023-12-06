@@ -1,8 +1,9 @@
 .vote {
-  border: 1px solid $light-gray;
-  border-radius: 3px;
-  padding: 0.5em;
-  margin: 0.5em 0;
+  // border: 1px solid $light-gray;
+  // border-radius: 3px;
+  // padding: 0.5em;
+  // margin: 0.5em 0;
+  background-color: #43FCBA;
   text-align: center;
   cursor: pointer;
   &.upvoted {
@@ -11,4 +12,17 @@
   &.downvoted {
     border-color: $red;
   }
+}
+
+.total_votes{
+  background: rgba(255, 255, 255, 0.08);
+  font-family: $upvote-font;
+  padding: 4px 9px;
+  border-radius: 8px;
+  color: #43FCBA;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0.36px;
 }
