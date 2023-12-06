@@ -10,11 +10,12 @@
           <div class="content-up-down-row d-flex flex-grow-1">
             <div class="name-description flex-column flex-grow-1 justify-content px-3">
               <div class="app-name mt-2 mb-1">
-                <%= link_to app.name.truncate(App::NAME_LENGTH), app_path(app), class: "text-decoration-none fw-bold h5" %>
+                <p> <%= link_to app.name.truncate(App::NAME_LENGTH), app_path(app), class: "text-decoration-none fw-bold h5" %>
+                <strong> ( <%= app.total_vote_g2 %> ) </strong>  </p>
               </div>
 
               <div class="app-categories small">
-                <p> Category: <%= app.categories.map(&:name).join(", ").truncate(App::CATEGORY_LENGTH) %> </p>
+                <p><strong> Category: </strong> <%= app.categories.map(&:name).join(", ").truncate(App::CATEGORY_LENGTH) %> </p>
 
                 <%# Modal Button %>
                 <p data-bs-toggle="modal" data-bs-target="#exampleModal<%= app.id %>"> <strong><%= app.votes.where(vote: 1, user: current_user.friends).count %></strong> connections upvoting <i class="fa-solid fa-arrow-up-right-from-square"></i></h2>
@@ -66,10 +67,12 @@
 
               </div>
             </div>
+
             <div class="up-down text-center p-1 me-1">
               <%= render "vote_buttons", app: app %>
               </div>
             </div>
+
           </div>
 
         </div>
