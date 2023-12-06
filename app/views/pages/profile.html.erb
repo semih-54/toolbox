@@ -1,13 +1,14 @@
 <div class="container p-3 vh-100">
-  <div class="text-white text-center">
-
-    <h1 class="fw-bold">Your Account</h1>
-    <% if params["user_id"] %>
+  <div class="text-white text-center mt-4">
+    <% profile_for_other_user = params.has_key?(:user_id)  %>
+    <% if profile_for_other_user %>
       <% user_for_profile = User.find(params["user_id"]) %>
+      <h1 class="fw-bold">About <%= user_for_profile.username %></h1>
     <% else %>
+      <h1 class="fw-bold">Your Account</h1>
       <% user_for_profile = current_user %>
     <% end %>
-    <div class="my-3">
+    <div class="my-4">
       <% if user_for_profile.photo.attached? %>
         <%= cl_image_tag user_for_profile.photo.key, class: "rounded-circle border border-white", height: 150, width: 150, crop: :fill %>
       <% else %>
@@ -18,80 +19,83 @@
     <div class="mb-3"><%= user_for_profile.email %></div>
     <% if user_for_profile == current_user %>
       <%= link_to "Edit Profile", edit_user_registration_path, class: "btn btn-primary" %>
-
+    <% end %>
   </div>
 
-  <div class="p-5 text-white text-center">
-    <div>
-      <h2 class="fw-bold mb-1 btn btn-primary btn-light-blue" data-bs-toggle="modal" data-bs-target="#exampleModal">Your Connections <i class="fa-solid fa-arrow-up-right-from-square"></i></h2>
-    </div>
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable ">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Your connections</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <div>
-              <% current_user.friends.each do |friend| %>
-                <div class="friends--box-wrapper d-flex">
-                  <% if friend.photo.attached? %>
-                    <div> <%= cl_image_tag friend.photo.key, class: "rounded-circle border border-white", height: 40, width: 40, crop: :fill %> </div>
-                  <% else %>
-                    <div> <%= image_tag "avatar_placeholder.jpg", class: "rounded-circle border border-white", height: 40, width: 40, crop: :fill %> </div>
-                  <% end %>
-                  <div class="p-2"><h2><%= friend.username%></h2></div>
-                </div>
-                <% end %>
-              <% end %>
+  <% if user_for_profile == current_user %>
+    <div class="p-5 text-white text-center">
+      <div>
+        <h2 class="fw-bold mb-1 btn btn-primary btn-light-blue" data-bs-toggle="modal" data-bs-target="#exampleModal">Your Connections <i class="fa-solid fa-arrow-up-right-from-square"></i></h2>
+      </div>
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable ">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Your connections</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <div class="modal-body">
+              <div>
+                <% current_user.friends.each do |friend| %>
+                  <div class="friends--box-wrapper d-flex">
+                    <% if friend.photo.attached? %>
+                      <div> <%= cl_image_tag friend.photo.key, class: "rounded-circle border border-white", height: 40, width: 40, crop: :fill %> </div>
+                    <% else %>
+                      <div> <%= image_tag "avatar_placeholder.jpg", class: "rounded-circle border border-white", height: 40, width: 40, crop: :fill %> </div>
+                    <% end %>
+                    <div class="p-2"><h2><%= friend.username%></h2></div>
+                  </div>
+                  <% end %>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <% if current_user.sent_connections.find_by(receiver: nil) %>
-      <% link = "https://toolbox.osc-fr1.scalingo.io/users/sign_up?connection_id=#{user_for_profile.sent_connections.last.id}" %>
-    <% end %>
-
-    <div class="add-user m-4" data-controller="add-connection">
-      <%= form_with url: profile_path, method: :get, html: {class: "mb-4", data: {add_connection_target: "form"}} do |f| %>
-        <%= f.label :query, "Add a User" %>
-        <%= f.text_field :query, placeholder: "Search by username...",
-                          class: "form-control",
-                          value: params[:query],
-                          data: {
-                            add_connection_target: "input",
-                            action: "keyup->add-connection#update"
-                          }
-                        %>
+      <% if current_user.sent_connections.find_by(receiver: nil) %>
+        <% link = "https://toolbox.osc-fr1.scalingo.io/users/sign_up?connection_id=#{user_for_profile.sent_connections.last.id}" %>
       <% end %>
 
-      <%= render "users_list", users: @users %>
-    </div>
+      <div class="add-user m-4" data-controller="add-connection">
+        <%= form_with url: profile_path, method: :get, html: {class: "mb-4", data: {add_connection_target: "form"}} do |f| %>
+          <%= f.label :query, "Add a User" %>
+          <%= f.text_field :query, placeholder: "Search by username...",
+                            class: "form-control",
+                            value: params[:query],
+                            data: {
+                              add_connection_target: "input",
+                              action: "keyup->add-connection#update"
+                            }
+                          %>
+        <% end %>
 
-    <div class="border-top mt-5">
-      <h3 class="mt-4">Invite a new User</h3>
-        <div data-controller="clipboard" data-clipboard-feedback-text-value="Copied!">
-          <div class="d-flex justify-content-between my-3">
-            <%= link_to connections_path, data: { turbo_method: :post }, class: "btn btn-primary btn-middle-blue" do %>
-              <span>Generate Link</span><i class="fa-solid fa-plus ms-1"></i>
-            <% end %>
-            <button class="btn btn-primary" data-action="click->clipboard#copy">Copy link <i class="fa-solid fa-copy"></i> </button>
+        <%= render "users_list", users: @users %>
+      </div>
+
+      <div class="border-top mt-5">
+        <h3 class="mt-4">Invite a new User</h3>
+          <div data-controller="clipboard" data-clipboard-feedback-text-value="Copied!">
+            <div class="d-flex justify-content-between my-3">
+              <%= link_to connections_path, data: { turbo_method: :post }, class: "btn btn-primary btn-middle-blue" do %>
+                <span>Generate Link</span><i class="fa-solid fa-plus ms-1"></i>
+              <% end %>
+              <button class="btn btn-primary" data-action="click->clipboard#copy">Copy link <i class="fa-solid fa-copy"></i> </button>
+            </div>
+            <div>
+              <input class="w-100" data-clipboard-target="input" type="text" value="<%= link %>" readonly>
+            </div>
           </div>
-          <div>
-            <input class="w-100" data-clipboard-target="input" type="text" value="<%= link %>" readonly>
-          </div>
-        </div>
-    </div>
+      </div>
+    </div <% profile_for_other_user  %>>
+  <% end %>
 
-
-  </div>
-    <% if params["user_id"] %>
+  <% if profile_for_other_user %>
+    <div class="mt-5 ">
+      <h4 class="text-center my-3 text-white fw-bold">Recent Activities</h4>
       <%= render "shared/user_activity" %>
-    <% end %>
+    </div>
+  <% end %>
 </div>
