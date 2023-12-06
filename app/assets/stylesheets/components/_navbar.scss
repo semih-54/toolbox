@@ -6,11 +6,11 @@
 }
 
 .ToolBox {
-  margin-top: 18px;
+  margin-top: 7px;
   color: white ;
   text-shadow: 2px 2px 4px #000000;
   text-decoration: none;
-  padding-left: 2px;
+  padding-left: 10px;
   font-family: $headers-font;
 }
 
@@ -24,9 +24,10 @@
 }
 
 .logo{
-  height: 60px;
-  width: 60px;
-  }
+  padding-left: 2px;
+  height: 35px;
+  width: 35px;
+}
 
 .feed-btn,
 .profile-btn {
