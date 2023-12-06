@@ -25,5 +25,4 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   get "profile", to: "pages#profile"
-  get "add-connection", to: "pages#add_connection"
 end
