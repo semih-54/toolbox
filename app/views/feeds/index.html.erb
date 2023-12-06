@@ -14,19 +14,19 @@
             <div class="connection-item">
               <p>
                 <% if item.asker == current_user %>
-                  <strong>New connection - <%= link_to item.receiver.username, profile_path(user: item.receiver.id), class: "text-decoration-none" %> </strong> has accepted your invitation.
+                  <strong>New connection - <%= link_to item.receiver.username, profile_path(user_id: item.receiver.id), class: "text-decoration-none" %> </strong> has accepted your invitation.
                 <% else %>
-                  <strong>New connection - </strong> you accepted invitation from <strong> <%= link_to item.asker.username, profile_path(user: item.asker.id), class: "text-decoration-none" %> </strong>.
+                  <strong>New connection - </strong> you accepted invitation from <strong> <%= link_to item.asker.username, profile_path(user_id: item.asker.id), class: "text-decoration-none" %> </strong>.
                 <% end %>
               </p>
             </div>
           <% when 'Comment' %>
             <div class="comment-item">
-              <p><strong>New comment - <%= link_to item.user.username, profile_path(user: item.user.id), class: "text-decoration-none" %> on <%= link_to item.app.name, app_path(item.app) %>:" </strong> <%= item.comment.truncate(App::COMMENT_LENGTH) %>".</p>
+              <p><strong>New comment - <%= link_to item.user.username, profile_path(user_id: item.user.id), class: "text-decoration-none" %> on <%= link_to item.app.name, app_path(item.app) %>:" </strong> <%= item.comment.truncate(App::COMMENT_LENGTH) %>".</p>
             </div>
           <% when 'Vote' %>
             <div class="vote-item">
-              <p><strong>New vote - <%= link_to item.user.username, profile_path(user: item.user.id), class: "text-decoration-none" %> </strong>  voted <%= item.vote %> on <%= link_to item.app.name, app_path(item.app) %></p>
+              <p><strong>New vote - <%= link_to item.user.username, profile_path(user_id: item.user.id), class: "text-decoration-none" %> </strong>  voted <%= item.vote %> on <%= link_to item.app.name, app_path(item.app) %></p>
             </div>
           <% else %>
             <p>Unknown activity type</p>
