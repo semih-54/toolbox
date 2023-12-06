@@ -1,10 +1,9 @@
 .vote {
-  // border: 1px solid $light-gray;
-  // border-radius: 3px;
-  // padding: 0.5em;
-  // margin: 0.5em 0;
-  background-color: #43FCBA;
+  background-color: transparent;
+  border-radius: 8px;
+  border: 1px solid green;
   text-align: center;
+
   cursor: pointer;
   &.upvoted {
     border-color: $green;
