@@ -1,5 +1,9 @@
 
 .container {
-  background-color: #1B262C;
+  background: var(--radial-bg, linear-gradient(191deg, #000B31 0%, rgba(0, 15, 67, 0.64) 100%));
   min-height: calc(100vh - 70px);
+}
+
+.container-2{
+  background: var(--radial-bg, linear-gradient(371deg, #000B31 0%, rgba(0, 15, 67, 0.64) 100%));
 }

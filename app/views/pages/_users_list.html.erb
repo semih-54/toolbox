@@ -1,0 +1,7 @@
+<div data-add-connection-target="list">
+  <ul>
+    <% users.each do |user| %>
+      <li><%= user.username %> <%= link_to "Add", connections_path(receiver_id: user), data: { turbo_method: :post } %></li>
+    <% end %>
+  </ul>
+</div>
