@@ -1,6 +1,6 @@
 class AppsController < ApplicationController
   def index
-    @apps = App.all
+    @apps = App.all.order(total_votes: :desc, total_vote_g2: :desc)
 
     if params[:query].present?
       sql_subquery = "name ILIKE :query OR description ILIKE :query"

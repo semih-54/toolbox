@@ -71,5 +71,10 @@
           </div>
         </div>
     </div>
+
+
   </div>
+    <% if params["user_id"] %>
+      <%= render "shared/user_activity" %>
+    <% end %>
 </div>
