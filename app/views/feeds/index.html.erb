@@ -1,38 +1,38 @@
 
 <div class="container">
-  <div class="text-white">
-    <h3><strong> Your Feed </strong> <h3>
-    <p> See most recent activities from your connections </p>
-  </div>
-
-  <div class="apps">
-  <% feed_items = @connections_asked + @connections_received + @comments + @votes %>
-  <% feed_items.sort_by! { |item| item.updated_at }.reverse! %>
-  <% feed_items.each do |item| %>
-    <div class="app-card">
-      <% case item.class.to_s %>
-      <% when 'Connection' %>
-        <div class="connection-item">
-          <p>
-            <% if item.asker == current_user %>
-              <strong>New connection - <%= link_to item.receiver.username, profile_path(user: item.receiver.id), class: "text-decoration-none" %> </strong> has accepted your invitation.
-            <% else %>
-              <strong>New connection - </strong> you accepted invitation from <strong> <%= link_to item.asker.username, profile_path(user: item.asker.id), class: "text-decoration-none" %> </strong>.
-            <% end %>
-          </p>
-        </div>
-      <% when 'Comment' %>
-        <div class="comment-item">
-          <p><strong>New comment - <%= link_to item.user.username, profile_path(user: item.user.id), class: "text-decoration-none" %> on <%= link_to item.app.name, app_path(item.app) %>:" </strong> <%= item.comment.truncate(App::COMMENT_LENGTH) %>".</p>
-        </div>
-      <% when 'Vote' %>
-        <div class="vote-item">
-          <p><strong>New vote - <%= link_to item.user.username, profile_path(user: item.user.id), class: "text-decoration-none" %> </strong>  voted <%= item.vote %> on <%= link_to item.app.name, app_path(item.app) %></p>
-        </div>
-      <% else %>
-        <p>Unknown activity type</p>
-      <% end %>
+    <div class="text-white">
+      <h3><strong> Your Feed </strong> <h3>
+      <p> See most recent activities of your connections </p>
     </div>
-  <% end %>
-</div>
+
+    <div class="apps">
+      <% feed_items = @connections_asked + @connections_received + @comments + @votes %>
+      <% feed_items.sort_by! { |item| item.updated_at }.reverse! %>
+      <% feed_items.each do |item| %>
+        <div class="app-card">
+          <% case item.class.to_s %>
+          <% when 'Connection' %>
+            <div class="connection-item">
+              <p>
+                <% if item.asker == current_user %>
+                  <strong>New connection - <%= link_to item.receiver.username, profile_path(user: item.receiver.id), class: "text-decoration-none" %> </strong> has accepted your invitation.
+                <% else %>
+                  <strong>New connection - </strong> you accepted invitation from <strong> <%= link_to item.asker.username, profile_path(user: item.asker.id), class: "text-decoration-none" %> </strong>.
+                <% end %>
+              </p>
+            </div>
+          <% when 'Comment' %>
+            <div class="comment-item">
+              <p><strong>New comment - <%= link_to item.user.username, profile_path(user: item.user.id), class: "text-decoration-none" %> on <%= link_to item.app.name, app_path(item.app) %>:" </strong> <%= item.comment.truncate(App::COMMENT_LENGTH) %>".</p>
+            </div>
+          <% when 'Vote' %>
+            <div class="vote-item">
+              <p><strong>New vote - <%= link_to item.user.username, profile_path(user: item.user.id), class: "text-decoration-none" %> </strong>  voted <%= item.vote %> on <%= link_to item.app.name, app_path(item.app) %></p>
+            </div>
+          <% else %>
+            <p>Unknown activity type</p>
+          <% end %>
+        </div>
+      <% end %>
+  </div>
 </div>
