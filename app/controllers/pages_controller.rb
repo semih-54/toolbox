@@ -5,6 +5,14 @@ class PagesController < ApplicationController
   end
 
   def profile
+    if params[:user_id]
+      user_for_profile = User.find(params[:user_id])
+    else
+      user_for_profile = current_user
+    end
+    @comments = Comment.where(user: user_for_profile).order(updated_at: :desc)
+    @votes = Vote.where(user: user_for_profile).order(updated_at: :desc)
+
     @users = []
 
     if params[:query].present?
@@ -17,5 +25,6 @@ class PagesController < ApplicationController
       format.html # Follow regular flow of Rails
       format.text { render partial: "pages/users_list", locals: {users: @users}, formats: [:html] }
     end
+
   end
 end
