@@ -4,27 +4,28 @@
         <div class="app d-flex justify-content mb-3 align-items-center">
 
           <%= link_to app_path(app) do %>
-            <%= image_tag "notion.png", width: "80px", height: "80px", crop: :fill %>
+            <%= image_tag app.logo_url, width: "80px", height: "80px", crop: :fill %>
           <% end %>
 
           <div class="content-up-down-row d-flex flex-grow-1">
             <div class="name-description flex-column flex-grow-1 justify-content px-3">
               <div class="app-name mt-2 mb-1">
-                <%= link_to app.name.truncate(App::NAME_LENGTH), app_path(app), class: "text-decoration-none fw-bold h5" %>
+                <p> <%= link_to app.name.truncate(App::NAME_LENGTH), app_path(app), class: "text-decoration-none fw-bold h5" %>
+                <strong> ( <%= app.total_vote_g2 %> ) </strong>  </p>
               </div>
 
               <div class="app-categories small">
-                <p> Category: <%= app.categories.map(&:name).join(", ").truncate(App::CATEGORY_LENGTH) %> </p>
+                <p><strong> Category: </strong> <%= app.categories.map(&:name).join(", ").truncate(App::CATEGORY_LENGTH) %> </p>
 
-                <div>
-                  <p data-bs-toggle="modal" data-bs-target="#exampleModal"> <strong><%= app.votes.where(vote: 1, user: current_user.friends).count %></strong> connections upvoting <i class="fa-solid fa-arrow-up-right-from-square"></i></h2>
-                </div>
+                <%# Modal Button %>
+                <p data-bs-toggle="modal" data-bs-target="#exampleModal<%= app.id %>"> <strong><%= app.votes.where(vote: 1, user: current_user.friends).count %></strong> connections upvoting <i class="fa-solid fa-arrow-up-right-from-square"></i></h2>
 
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <%# Modal Pop Up %>
+                <div class="modal fade" id="exampleModal<%= app.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable ">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <p class="modal-title fs-5 text-white" id="exampleModalLabel">Your connections upvoting</p>
+                        <p class="modal-title fs-5 text-white" id="exampleModalLabel">Connections voted</p>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
                       <div class="modal-body">
@@ -66,10 +67,12 @@
 
               </div>
             </div>
+
             <div class="up-down text-center p-1 me-1">
               <%= render "vote_buttons", app: app %>
               </div>
             </div>
+
           </div>
 
         </div>

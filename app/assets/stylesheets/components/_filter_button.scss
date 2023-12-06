@@ -3,11 +3,17 @@
   border-radius: 6px;
   color: white;
   padding: 5px;
-  box-shadow: 1px 1px 1px #BBE1FA;
+  box-shadow: 3px 3px 3px #BBE1FA;
+  text-decoration: none;
 
-  .filter_button:hover {
-    background-color: #1B262C;
-    color: #BBE1FA;
-  }
+}
+
+.filter_button_on {
+  background-color: $light-gray;
+  border-radius: 6px;
+  color: #3282B8;
+  padding: 5px;
+  box-shadow: 1px 1px 1px #BBE1FA;
+  text-decoration: none;
 
 }
