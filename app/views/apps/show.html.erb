@@ -26,7 +26,7 @@
     <div class="description px-2"> <% @app.comments.each do |comment| %>
       <div class="bg-white px-2 mb-2">
         <% if comment.user.photo.attached? %>
-            <%= cl_image_tag vote.user.photo.key, class: "rounded-circle border border-white", width: "25px", height: "25px", crop: :fill %>
+            <%= cl_image_tag comment.user.photo.key, class: "rounded-circle border border-white", width: 25, height: 25, crop: :fill %>
           <% else %>
             <%= image_tag "avatar_placeholder.jpg", class: "rounded-circle border border-white", width: "25px", height: "25px", crop: :fill  %>
         <% end %>

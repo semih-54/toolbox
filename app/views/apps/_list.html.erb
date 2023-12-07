@@ -8,7 +8,7 @@
           </div>
 
           <div class="app-name">
-              <small class="total_votes"> <%= app.total_votes %> </small>
+              <small class="total_votes"> <%= app.total_votes + app.total_vote_g2  %> </small>
             </div>
         </div>
 
@@ -40,8 +40,9 @@
                 <% end %>
               <% end %>
               <!--total friends upvote-->
+
               <%# Modal Button %>
-                <p data-bs-toggle="modal" data-bs-target="#exampleModal<%= app.id %>" class="text-white"> <strong><%= app.votes.where(vote: 1, user: current_user.friends).count %></strong> <small>connections upvoting</small> <i class="fa-solid fa-arrow-up-right-from-square"></i></h2>
+                <p data-bs-toggle="modal" data-bs-target="#exampleModal<%= app.id %>" class="text-white"> <strong><%= app.votes.where(vote: 1, user: current_user.friends).count %></strong> <small>👍</small>
 
                 <%# Modal Pop Up %>
                 <div class="modal fade" id="exampleModal<%= app.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -64,7 +65,8 @@
                                   <%= image_tag "avatar_placeholder.jpg", class: "rounded-circle border border-white", width: "25px", height: "25px", crop: :fill  %>
                                 <% end %>
                               <% end %>
-                              <div class="p-2 text-white"><h2><%= vote.user.username%></h2></div>
+                              <div class="p-2 text-white"><h2><%= vote.user.username%></h2>
+                              </div>
                             </div>
                             <% end %>
                         </div>
