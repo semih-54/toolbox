@@ -1,4 +1,4 @@
-  <div class="apps">
+<div class="apps">
   <% feed_items = @comments + @votes %>
   <% feed_items.sort_by! { |item| item.updated_at }.reverse! %>
   <% feed_items.each do |item| %>
