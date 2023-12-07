@@ -1,8 +1,8 @@
 <div class="container">
-    <div class="text-white">
-      <h3><strong> Your Feed </strong> <h3>
+  <div class="text-white">
+      <h3 class="mb-3"><strong> Your Feed </strong> <h3>
       <p> Recent activities of your connections </p>
-    </div>
+  </div>
 
     <div class="apps">
       <% feed_items = @connections_asked + @connections_received + @comments + @votes %>
@@ -11,6 +11,19 @@
         <div class="app-card">
           <% case item.class.to_s %>
           <% when 'Connection' %>
+            <% if item.asker == current_user %>
+              <% if item.receiver.photo.attached? %>
+                <%= cl_image_tag item.receiver.photo.key, class: "avatar" %>
+              <% else %>
+                <%= image_tag "avatar_placeholder.jpg", alt: "text", class: "avatar" %>
+              <% end %>
+            <% else %>
+              <% if item.asker.photo.attached? %>
+                <%= cl_image_tag item.asker.photo.key, class: "avatar" %>
+              <% else %>
+                <%= image_tag "avatar_placeholder.jpg", alt: "text", class: "avatar" %>
+              <% end %>
+            <% end %>
             <div class="connection-item">
               <p>
                 <% if item.asker == current_user %>
@@ -21,10 +34,20 @@
               </p>
             </div>
           <% when 'Comment' %>
+            <% if item.user.photo.attached? %>
+              <%= cl_image_tag item.user.photo.key, class: "avatar" %>
+            <% else %>
+              <%= image_tag "avatar_placeholder.jpg", alt: "text", class: "avatar" %>
+            <% end %>
             <div class="comment-item">
               <p><strong>New comment - <%= link_to item.user.username, profile_path(user_id: item.user.id), class: "text-decoration-none" %> on <%= link_to item.app.name, app_path(item.app) %>:" </strong> <%= item.comment.truncate(App::COMMENT_LENGTH) %>".</p>
             </div>
           <% when 'Vote' %>
+            <% if item.user.photo.attached? %>
+              <%= cl_image_tag item.user.photo.key, class: "avatar" %>
+            <% else %>
+              <%= image_tag "avatar_placeholder.jpg", alt: "text", class: "avatar" %>
+            <% end %>
             <div class="vote-item">
               <p><strong>New vote - <%= link_to item.user.username, profile_path(user_id: item.user.id), class: "text-decoration-none" %> </strong>  voted <%= item.vote %> on <%= link_to item.app.name, app_path(item.app) %></p>
             </div>
@@ -32,7 +55,6 @@
             <p>Unknown activity type</p>
           <% end %>
         </div>
-
       <% end %>
   </div>
 </div>
