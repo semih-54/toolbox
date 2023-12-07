@@ -9,17 +9,37 @@
   </div>
   <div data-controller="comments">
     <div class="comments-header">
-      <div class="toggle"></div>
+    <div class="toggle-connection">
+      <%= form_with(url: app_path(@app), method: :get, local: true, data: { filter_target: "form"}) do %>
+        <label class="switch">
+          <%= check_box :connections, :connections,
+                          class: "opacity-0",
+                          data: {
+                            filter_target: "connections",
+                            action: "change->comments#showConnections"
+                          } %>
+          <span class="slider">
+          </span>
+        </label>
+      <% end %>
+    </div>
       <h3>COMMENTS</h3>
       <div class="tile"><%= @app.comments.count %></div>
       <a href="#" class="btn-ghost" data-action="click->comments#addComment">Add Yours</a>
     </div>
 
     <div class="card-glass--scrollable" data-comments-target="commentsList">
-      <%= render "comments/new", app: @app %>
-      <% @app.comments.each  do |comment|%>
-        <%= render "comments/comment", comment: comment %>
-      <% end %>
+        <%= render "comments/new", app: @app %>
+        <div data-comments-target="all">
+          <% @app.comments.each  do |comment|%>
+            <%= render "comments/comment", comment: comment %>
+          <% end %>
+        </div>
+        <div class="d-none" data-comments-target="connections">
+          <% @app.comments.where(user: current_user.connections).each  do |comment|%>
+            <%= render "comments/comment", comment: comment %>
+          <% end %>
+        </div>
     </div>
   </div>
 </div>

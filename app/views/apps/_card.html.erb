@@ -25,7 +25,7 @@
                 <% end %>
               <% else %>
                 <%= link_to profile_path(user_id: vote.user.id), class: ("shift-left" if index > 0) do %>
-                  <%= image_tag "semih_profile.png", class: "avatar-squared", width: 25, height: 25, crop: :fill  %>
+                  <%= image_tag "avatar_placeholder.jpg", class: "avatar-squared", width: 25, height: 25, crop: :fill  %>
 
                 <% end %>
               <% end %>
@@ -46,7 +46,7 @@
                 <% end %>
               <% else %>
                 <%= link_to profile_path(user_id: vote.user.id), class: ("shift-left" if index > 0) do %>
-                  <%= image_tag "semih_profile.png", class: "avatar-squared", width: 25, height: 25, crop: :fill  %>
+                  <%= image_tag "avatar_placeholder.jpg", class: "avatar-squared", width: 25, height: 25, crop: :fill  %>
                 <% end %>
               <% end %>
             <% end %>
