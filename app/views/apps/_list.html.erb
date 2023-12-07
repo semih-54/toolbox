@@ -1,5 +1,7 @@
 <div class="apps" id="apps_div" data-search-tools-target="list" data-filter-target="list">
   <% apps.each do |app| %>
-    <%= render "card", app: app %>
+    <div data-controller="votes">
+      <%= render "apps/card", app: app %>
+    </div>
   <% end %>
 </div>

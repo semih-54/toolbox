@@ -1,7 +1,11 @@
 <div class="container">
-  <%= render "card", app: @app %>
+  <div data-controller="votes">
+    <%= render "card", app: @app %>
+  </div>
   <div class="card-glass card-glass--scrollable">
-    <p><%= @app.description %></p>
+    <div class="card-glass--description">
+      <p><%= @app.description %></p>
+    </div>
   </div>
   <div data-controller="comments">
     <div class="comments-header">

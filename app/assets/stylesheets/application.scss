@@ -12,7 +12,15 @@
 @import "pages/index";
 
 // custom css
-// show page
+
+body {
+  min-height: 100vh;
+}
+
+p {
+  margin: 0 !important;
+}
+
 .app-name{
   color: white;
   margin-top: 10px;

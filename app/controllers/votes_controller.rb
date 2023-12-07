@@ -4,15 +4,21 @@ class VotesController < ApplicationController
     @vote = Vote.new(vote_params)
     @vote.user = current_user
     @vote.save
-    redirect_to apps_path
+
+    respond_to do |format|
+      format.html { redirect_to apps_path }
+      format.text { render partial: "apps/card", locals: { app: @app }, formats: [:html] }
+    end
   end
 
   def update
     @vote = Vote.find(params[:id])
-    if @vote.update(vote_params)
-      redirect_to apps_path
-    else
-      raise
+    @app = @vote.app
+    @vote.update(vote_params)
+
+    respond_to do |format|
+      format.html { redirect_to apps_path }
+      format.text { render partial: "apps/card", locals: { app: @app }, formats: [:html] }
     end
   end
 
