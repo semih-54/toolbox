@@ -32,6 +32,10 @@
 }
 
 .slider:before {
+  background: url('connections-switch-icon.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 24px 24px;
   border-radius: 6px;
   position: absolute;
   content: "";
