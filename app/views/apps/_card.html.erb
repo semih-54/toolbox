@@ -6,7 +6,7 @@
 
     <div class="app-body">
       <%= link_to app_path(app) do %>
-        <%= image_tag app.logo_url, width: "80px", height: "80px", crop: :fill, class: "app-img" %>
+        <%= image_tag app.logo_url, width: "80px", height: "80px", crop: :fill, class: "tool-icon" %>
       <% end %>
 
       <div class="app-details">
@@ -26,6 +26,7 @@
               <% else %>
                 <%= link_to profile_path(user_id: vote.user.id), class: ("shift-left" if index > 0) do %>
                   <%= image_tag "semih_profile.png", class: "avatar-squared", width: 25, height: 25, crop: :fill  %>
+
                 <% end %>
               <% end %>
             <% end %>

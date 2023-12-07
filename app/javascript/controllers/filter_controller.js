@@ -3,7 +3,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["form", "category", "list"]
+  static targets = ["form", "category", "list", "connections"]
 
   submit() {
     console.log("submit");
@@ -16,4 +16,15 @@ export default class extends Controller {
       })
   }
 
+  connections() {
+    console.log(this.connectionsTarget.checked);
+    const url = `${this.formTarget.action}?connections=${this.connectionsTarget.checked}`
+    console.log(url);
+    fetch(url, {headers: {"Accept": "text/plain"}})
+      .then(response => response.text())
+      .then((data) => {
+        // console.log(data);
+        this.listTarget.outerHTML = data
+      })
+  }
 }
