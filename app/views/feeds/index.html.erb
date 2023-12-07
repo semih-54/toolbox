@@ -25,13 +25,13 @@
               <% end %>
             <% end %>
             <div class="connection-item">
-              <p>
-                <% if item.asker == current_user %>
-                  <strong>New connection - <%= link_to item.receiver.username, profile_path(user_id: item.receiver.id), class: "text-decoration-none" %> </strong> has accepted your invitation.
-                <% else %>
-                  <strong>New connection - </strong> you accepted invitation from <strong> <%= link_to item.asker.username, profile_path(user_id: item.asker.id), class: "text-decoration-none" %> </strong>.
-                <% end %>
-              </p>
+              <% if item.asker == current_user %>
+                <p class="mb-1"><strong>New connection</strong></p>
+                <p class="mb-1"><%= link_to item.receiver.username, profile_path(user_id: item.receiver.id), class: "text-turqoise text-decoration-none" %>  has accepted your invitation.</p>
+              <% else %>
+                <p class="mb-1"><strong>New connection</strong></p>
+                <p class="mb-1">You accepted invitation from <strong> <%= link_to item.asker.username, profile_path(user_id: item.asker.id), class: "text-turqoise text-decoration-none" %> </strong>.</p>
+              <% end %>
             </div>
           <% when 'Comment' %>
             <% if item.user.photo.attached? %>
@@ -40,7 +40,9 @@
               <%= image_tag "avatar_placeholder.jpg", alt: "text", class: "avatar me-3" %>
             <% end %>
             <div class="comment-item">
-              <p><strong>New comment - <%= link_to item.user.username, profile_path(user_id: item.user.id), class: "text-decoration-none" %> on <%= link_to item.app.name, app_path(item.app) %>:" </strong> <%= item.comment.truncate(App::COMMENT_LENGTH) %>".</p>
+              <p class="mb-1"><strong>New comment</strong></p>
+              <p class="mb-0"><%= link_to item.user.username, profile_path(user_id: item.user.id), class: "text-turqoise text-decoration-none" %> on <%= link_to item.app.name, app_path(item.app), class: "text-turqoise text-decoration-none" %>: </p>
+              <p><em>" <%= item.comment.truncate(App::COMMENT_LENGTH) %>".</em></p>
             </div>
           <% when 'Vote' %>
             <% if item.user.photo.attached? %>
@@ -49,7 +51,8 @@
               <%= image_tag "avatar_placeholder.jpg", alt: "text", class: "avatar me-3" %>
             <% end %>
             <div class="vote-item">
-              <p><strong>New vote - <%= link_to item.user.username, profile_path(user_id: item.user.id), class: "text-decoration-none" %> </strong>  voted <%= item.vote %> on <%= link_to item.app.name, app_path(item.app) %></p>
+              <p class="mb-1"><strong>New vote</strong></p>
+              <p class="mb-1"> <%= link_to item.user.username, profile_path(user_id: item.user.id), class: "text-turqoise text-decoration-none" %> voted <%= item.vote %> on <%= link_to item.app.name, app_path(item.app), class: "text-turqoise text-decoration-none" %></p>
             </div>
           <% else %>
             <p>Unknown activity type</p>
