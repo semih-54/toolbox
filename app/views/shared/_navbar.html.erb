@@ -1,15 +1,10 @@
-<div class="navbar navbar-expand-sm transparent fixed ">
+<div class="navbar navbar-expand-sm transparent fixed">
   <div class="container-fluid ">
     <div class="d-flex">
       <% if user_signed_in? %>
-        <%= link_to apps_path  do %>
-        <%= image_tag "logo-1-removebg-bigger.png", class: "logo"%>
-        <% end %>
-        <%= link_to "ToolBox", root_path, class:"ToolBox" %>
+        <%= link_to "ToolBox", apps_path, class:"ToolBox" %>
       <% else %>
-        <%= link_to root_path  do %>
-        <%= image_tag "logo-1-removebg-bigger.png", class: "logo"%>
-        <% end %>
+        <%= link_to "ToolBox", root_path, class:"ToolBox" %>
       <% end %>
     </div>
 
@@ -17,16 +12,16 @@
      <div class="d-flex">
         <%= link_to feed_path do %>
         <button type="button" class="feed-btn">
-          <span class="fas fa-newspaper fa-xl px-1 feed" style="color: #ffffff;padding-top: 15px;" ></span>
+          <span class="fas fa-newspaper fa-2xl px-1 feed" style="color: #ffffff;padding-top: 15px;" ></span>
         </button>
         <% end %>
 
 
         <button type="button" class="profile-btn" data-bs-toggle="dropdown" aria-expanded="false">
           <% if current_user.photo.attached? %>
-            <%= cl_image_tag current_user.photo.key, class: "image-form border border-white profile-btn", crop: :fill, style: "height: 28px; width: 28px; box-shadow: 2px 2px 4px black;" %>
+            <%= cl_image_tag current_user.photo.key, class: "image-form border border-white profile-btn", crop: :fill, style: "height: 32px; width: 32px; box-shadow: 2px 2px 4px black;" %>
           <% else %>
-            <%= image_tag "avatar_placeholder.jpg", class: "image-form border border-white profile-btn", crop: :fill, style: "height: 28px; width: 28px; box-shadow: 2px 2px 4px black;" %>
+            <%= image_tag "avatar_placeholder.jpg", class: "image-form border border-white profile-btn", crop: :fill, style: "height: 32px; width: 32px; box-shadow: 2px 2px 4px black;" %>
           <% end %>
         </button>
         <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end">
