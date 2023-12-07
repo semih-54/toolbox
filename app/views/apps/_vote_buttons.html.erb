@@ -3,16 +3,16 @@
       <div class="up mb-1">
         <%= button_to vote_path(vote, vote: (vote.upvoted? ? 0 : +1)),
                       method: :patch,
-                      class: "vote #{vote.upvoted? ? "upvoted" : ""}" do %>
-          <i class="fa-sharp fa-solid fa-chevron-up" style="color: #ffffff;"></i>
+                      class: "vote #{vote.upvoted? ? "upvoted" : "upvote"}" do %>
+          <i class="fa-sharp fa-solid fa-chevron-up" style=""></i>
         <% end %>
       </div>
 
       <div class="down mt-1">
         <%= button_to vote_path(vote, vote: (vote.downvoted? ? 0 : -1)),
                       method: :patch,
-                      class: "vote vote #{vote.downvoted? && "downvoted"}" do %>
-          <i class="fa-sharp fa-solid fa-chevron-down" style="color: #ffffff;"></i>
+                      class: "vote #{vote.downvoted? ? "downvoted" : "downvote"}" do %>
+          <i class="fa-sharp fa-solid fa-chevron-down" style=""></i>
         <% end %>
       </div>
 
@@ -20,16 +20,16 @@
       <div class="up mb-1">
         <%= button_to app_votes_path(app, vote: +1),
                       method: :post,
-                      class: "vote" do %>
-          <i class="fa-sharp fa-solid fa-chevron-up" style="color: #ffffff;"></i>
+                      class: "vote upvote" do %>
+          <i class="fa-sharp fa-solid fa-chevron-up" style=""></i>
         <% end %>
       </div>
 
       <div class="down mt-1">
         <%= button_to app_votes_path(app, vote: -1),
                       method: :post,
-                      class: "vote" do %>
-          <i class="fa-sharp fa-solid fa-chevron-down" style="color: #ffffff;"></i>
+                      class: "vote downvote" do %>
+          <i class="fa-sharp fa-solid fa-chevron-down" style=""></i>
         <% end %>
       </div>
     <% end %>

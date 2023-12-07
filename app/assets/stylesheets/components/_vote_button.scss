@@ -1,8 +1,12 @@
 .vote {
-  background-color: transparent;
-  border-radius: 8px;
-  border: 1px solid green;
-  text-align: center;
+  display: flex;
+  height: 32px;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  align-self: stretch;
+  background: transparent;
 
   cursor: pointer;
   &.upvoted {
@@ -11,9 +15,27 @@
   &.downvoted {
     border-color: $red;
   }
+
+  &.upvote {
+    color: $upvoter;
+    border: 1px solid $upvoter;
+  }
+
+  &.downvote {
+    color: $downvoter;
+    border: 1px solid $downvoter;
+  }
 }
 
-.total_votes{
+.vote-buttons {
+  display: flex;
+  width: 48px;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.total_votes {
   background: rgba(255, 255, 255, 0.08);
   font-family: $upvote-font;
   padding: 4px 9px;
