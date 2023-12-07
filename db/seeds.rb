@@ -85,7 +85,7 @@ AppCategory.create!([{
 },
 {
   app: App.second,
-  category: Category.first,
+  category: Category.second,
 },
 {
   app: App.third,
