@@ -8,20 +8,20 @@
       <% feed_items = @connections_asked + @connections_received + @comments + @votes %>
       <% feed_items.sort_by! { |item| item.updated_at }.reverse! %>
       <% feed_items.each do |item| %>
-        <div class="app-card">
+        <div class="card-glass d-flex align-items-center">
           <% case item.class.to_s %>
           <% when 'Connection' %>
             <% if item.asker == current_user %>
               <% if item.receiver.photo.attached? %>
-                <%= cl_image_tag item.receiver.photo.key, class: "avatar" %>
+                <%= cl_image_tag item.receiver.photo.key, class: "avatar me-3" %>
               <% else %>
-                <%= image_tag "avatar_placeholder.jpg", alt: "text", class: "avatar" %>
+                <%= image_tag "avatar_placeholder.jpg", alt: "text", class: "avatar me-3" %>
               <% end %>
             <% else %>
               <% if item.asker.photo.attached? %>
-                <%= cl_image_tag item.asker.photo.key, class: "avatar" %>
+                <%= cl_image_tag item.asker.photo.key, class: "avatar me-3" %>
               <% else %>
-                <%= image_tag "avatar_placeholder.jpg", alt: "text", class: "avatar" %>
+                <%= image_tag "avatar_placeholder.jpg", alt: "text", class: "avatar me-3" %>
               <% end %>
             <% end %>
             <div class="connection-item">
@@ -35,18 +35,18 @@
             </div>
           <% when 'Comment' %>
             <% if item.user.photo.attached? %>
-              <%= cl_image_tag item.user.photo.key, class: "avatar" %>
+              <%= cl_image_tag item.user.photo.key, class: "avatar me-3" %>
             <% else %>
-              <%= image_tag "avatar_placeholder.jpg", alt: "text", class: "avatar" %>
+              <%= image_tag "avatar_placeholder.jpg", alt: "text", class: "avatar me-3" %>
             <% end %>
             <div class="comment-item">
               <p><strong>New comment - <%= link_to item.user.username, profile_path(user_id: item.user.id), class: "text-decoration-none" %> on <%= link_to item.app.name, app_path(item.app) %>:" </strong> <%= item.comment.truncate(App::COMMENT_LENGTH) %>".</p>
             </div>
           <% when 'Vote' %>
             <% if item.user.photo.attached? %>
-              <%= cl_image_tag item.user.photo.key, class: "avatar" %>
+              <%= cl_image_tag item.user.photo.key, class: "avatar me-3" %>
             <% else %>
-              <%= image_tag "avatar_placeholder.jpg", alt: "text", class: "avatar" %>
+              <%= image_tag "avatar_placeholder.jpg", alt: "text", class: "avatar me-3" %>
             <% end %>
             <div class="vote-item">
               <p><strong>New vote - <%= link_to item.user.username, profile_path(user_id: item.user.id), class: "text-decoration-none" %> </strong>  voted <%= item.vote %> on <%= link_to item.app.name, app_path(item.app) %></p>
