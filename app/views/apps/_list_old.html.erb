@@ -1,0 +1,147 @@
+<div class="apps" id="apps_div" data-search-tools-target="list" data-filter-target="list">
+  <% apps.each do |app| %>
+    <div class="app-card">
+      <div class="app-content">
+        <div class="card-container-top ">
+          <div class="app-name ">
+            <p> <%= link_to app.name.truncate(App::NAME_LENGTH), app_path(app), class: "app-title"%>
+          </div>
+
+          <div class="app-name">
+            <small class="total_votes"> <%= app.total_votes + app.total_vote_g2  %> </small>
+          </div>
+        </div>
+
+        <div class="container-bottom">
+          <div>
+            <%= link_to app_path(app) do %>
+              <%= image_tag app.logo_url, width: "88px", height: "88px", crop: :fill, class: "tool-icon" %>
+            <% end %>
+          </div>
+
+          <div class="middle-container-content">
+            <div>
+              <% app.categories.map(&:name).each do |category| %>
+                <span class="category-name"><%= category.truncate(App::CATEGORY_LENGTH) %></span>
+              <% end %>
+            </div>
+
+            <!--if upvoted-->
+            <div class="upvoted-profile">
+              <% app.votes.where(vote: 1, user: current_user.friends).each do |vote| %>
+                <% if vote.user.photo.attached? %>
+                  <%= link_to profile_path(voter_id: vote.user.id) do %>
+                  <%= cl_image_tag vote.user.photo.key, class: "rounded-circle border border-white", width: "25px", height: "25px", crop: :fill %>
+                  <% end %>
+                <% else %>
+                  <%= link_to profile_path(voter_id: vote.user.id) do %>
+                    <%= image_tag "semih_profile.png", class: "rounded-circle border border-white", width: "25px", height: "25px", crop: :fill  %>
+                  <% end %>
+                <% end %>
+              <% end %>
+
+              <!--total friends upvote-->
+
+              <%# Modal Button %>
+                <p data-bs-toggle="modal" data-bs-target="#exampleModal<%= app.id %>" class="text-white"> <strong><%= app.votes.where(vote: 1, user: current_user.friends).count %></strong> <small>👍</small>
+
+                <%# Modal Pop Up %>
+                <div class="modal fade" id="exampleModal<%= app.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable ">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <p class="modal-title fs-5 text-white" id="exampleModalLabel">Connections voted</p>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <div>
+                          <% app.votes.where(vote: 1, user: current_user.friends).each do |vote| %>
+                          <div class="friends--box-wrapper d-flex align-items-center">
+                            <% if vote.user.photo.attached? %>
+                              <%= link_to profile_path(user_id: vote.user.id) do %>
+                                <%= cl_image_tag vote.user.photo.key, class: "rounded-circle border border-white", width: "25px", height: "25px", crop: :fill %>
+                              <% end %>
+                            <% else %>
+                                <%= link_to profile_path(user_id: vote.user.id) do %>
+                                  <%= image_tag "semih_profile.png", class: "rounded-circle border border-white", width: "25px", height: "25px", crop: :fill  %>
+                                <% end %>
+                              <% end %>
+                              <div class="p-2 text-white"><h2><%= vote.user.username%></h2>
+                              </div>
+                            </div>
+                            <% end %>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+            </div>
+            <!--downvote-->
+            <div class="down-voted-profile">
+              <% app.votes.where(vote: 1, user: current_user.friends).each do |vote| %>
+                <% if vote.user.photo.attached? %>
+                  <%= link_to profile_path(voter_id: vote.user.id) do %>
+                  <%= cl_image_tag vote.user.photo.key, class: "rounded-circle border border-white", width: "25px", height: "25px", crop: :fill %>
+                  <% end %>
+                <% else %>
+                  <%= link_to profile_path(voter_id: vote.user.id) do %>
+                    <%= image_tag "semih_profile.png", class: "rounded-circle border border-white", width: "25px", height: "25px", crop: :fill  %>
+                  <% end %>
+                <% end %>
+              <% end %>
+
+              <!--number of downvotes-->
+
+              <%# Modal Button %>
+              <p data-bs-toggle="modal" data-bs-target="#exampleModal<%= app.id %>" class="text-white"> <strong><%= app.votes.where(vote: 1, user: current_user.friends).count %></strong> <small>👎</small>
+
+              <%# Modal Pop Up %>
+              <div class="modal fade" id="exampleModal<%= app.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable ">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <p class="modal-title fs-5 text-white" id="exampleModalLabel">Connections voted</p>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <div>
+                        <% app.votes.where(vote: 1, user: current_user.friends).each do |vote| %>
+                        <div class="friends--box-wrapper d-flex align-items-center">
+                          <% if vote.user.photo.attached? %>
+                            <%= link_to profile_path(user_id: vote.user.id) do %>
+                              <%= cl_image_tag vote.user.photo.key, class: "rounded-circle border border-white", width: "25px", height: "25px", crop: :fill %>
+                            <% end %>
+                          <% else %>
+                              <%= link_to profile_path(user_id: vote.user.id) do %>
+                                <%= image_tag "semih_profile.png", class: "rounded-circle border border-white", width: "25px", height: "25px", crop: :fill  %>
+                              <% end %>
+                            <% end %>
+                            <div class="p-2 text-white"><h2><%= vote.user.username%></h2>
+                            </div>
+                          </div>
+                          <% end %>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+            </div>
+
+          <div class="end-of-container">
+            <%= render "vote_buttons", app: app %>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+</div>
