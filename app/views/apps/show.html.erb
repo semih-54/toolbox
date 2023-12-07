@@ -3,17 +3,19 @@
   <div class="card-glass card-glass--scrollable">
     <p><%= @app.description %></p>
   </div>
+  <div data-controller="comments">
+    <div class="comments-header">
+      <div class="toggle"></div>
+      <h3>COMMENTS</h3>
+      <div class="tile"><%= @app.comments.count %></div>
+      <a href="#" class="btn-ghost" data-action="click->comments#addComment">Add Yours</a>
+    </div>
 
-  <div class="comments-header">
-    <div class="toggle"></div>
-    <h3>COMMENTS</h3>
-    <div class="tile"><%= @app.comments.count %></div>
-    <a href="#" class="btn-ghost">Add Yours</a>
-  </div>
-
-  <div class="card-glass--scrollable">
-    <% @app.comments.each  do |comment|%>
-      <%= render "comments/comment", comment: comment %>
-    <% end %>
+    <div class="card-glass--scrollable" data-comments-target="commentsList">
+      <%= render "comments/new", app: @app %>
+      <% @app.comments.each  do |comment|%>
+        <%= render "comments/comment", comment: comment %>
+      <% end %>
+    </div>
   </div>
 </div>
