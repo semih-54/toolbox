@@ -5,7 +5,7 @@
         <%= text_field_tag :query,
               params[:query],
               class: "form-control",
-              placeholder: "Type a app name",
+              placeholder: "Type an app name",
               data: {
                 search_tools_target: "input",
                 action: "keyup->search-tools#update"
@@ -14,7 +14,6 @@
       <% end %>
     </div>
   </div>
-
 
   <div class="filters">
     <div class="filter-category-button">
@@ -34,14 +33,15 @@
       <%= form_with(url: apps_path, method: :get, local: true, data: { filter_target: "form"}) do %>
         <label class="switch">
           <%= check_box :connections, :connections,
+                          class: "opacity-0",
                           data: {
                             filter_target: "connections",
                             action: "change->filter#connections"
                           } %>
-          <span class="slider"></span>
+          <span class="slider">
+          </span>
         </label>
       <% end %>
-
     </div>
   </div>
 

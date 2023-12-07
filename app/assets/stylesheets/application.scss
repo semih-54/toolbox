@@ -12,7 +12,6 @@
 @import "pages/index";
 
 // custom css
-// show page
 
 body {
   min-height: 100vh;
@@ -70,4 +69,12 @@ p {
 .border-top {
   border-top: 1px;
   border-color: #0db096;
+}
+
+.search-results {
+  align-content: center;
+  justify-items: start;
+  width: 100%;
+  padding-bottom: 2px;
+  height:auto;
 }

@@ -18,7 +18,7 @@
         <div class="fw-bold mb-1 fs-2"><%= user_for_profile.username %></div>
         <div class="mb-3"><%= user_for_profile.email %></div>
         <% if user_for_profile == current_user %>
-          <%= link_to "Edit Profile", edit_user_registration_path, class: "button-border btn btn-primary" %>
+          <%= link_to "Edit Profile", edit_user_registration_path, class: "button-border btn btn-primary btn-light-blue" %>
         <% end %>
       </div>
     </div>
@@ -63,7 +63,7 @@
 
       <div class="add-user my-3" data-controller="add-connection">
         <%= form_with url: profile_path, method: :get, html: {class: "mb-4", data: {add_connection_target: "form"}} do |f| %>
-          <%= f.label :query, "Add a User", class: "mb-1" %>
+          <%= f.label :query, "Add a User", class: "mb-1 fw-bold me-1" %> <i class="fa-solid fa-caret-down"></i>
           <%= f.text_field :query, placeholder: "Search by username...",
                             class: "form-control",
                             value: params[:query],
