@@ -10,9 +10,9 @@
     <% end %>
     <div class="my-4">
       <% if user_for_profile.photo.attached? %>
-        <%= cl_image_tag user_for_profile.photo.key, class: "rounded-circle border border-white", height: 150, width: 150, crop: :fill %>
+        <%= cl_image_tag user_for_profile.photo.key, class: "image-form border border-white", height: 150, width: 150, crop: :fill %>
       <% else %>
-        <%= image_tag "avatar_placeholder.jpg", class: "rounded-circle border border-white", height: 150, width: 150, crop: :fill %>
+        <%= image_tag "avatar_placeholder.jpg", class: "image-form border border-white", height: 150, width: 150, crop: :fill %>
       <% end %>
     </div>
     <div class="fw-bold mb-1 fs-2"><%= user_for_profile.username %></div>
@@ -25,7 +25,7 @@
   <% if user_for_profile == current_user %>
     <div class="p-5 text-white text-center">
       <div>
-        <h2 class="fw-bold mb-1 btn btn-primary btn-light-blue" data-bs-toggle="modal" data-bs-target="#exampleModal">Your Connections <i class="fa-solid fa-arrow-up-right-from-square"></i></h2>
+        <h2 class="fw-bold mb-4 btn btn-primary btn-light-blue" data-bs-toggle="modal" data-bs-target="#exampleModal">Your Connections <i class="fa-solid fa-arrow-up-right-from-square"></i></h2>
       </div>
       <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable ">
@@ -39,9 +39,9 @@
                 <% current_user.friends.each do |friend| %>
                   <div class="friends--box-wrapper d-flex">
                     <% if friend.photo.attached? %>
-                      <div> <%= cl_image_tag friend.photo.key, class: "rounded-circle border border-white", height: 40, width: 40, crop: :fill %> </div>
+                      <div> <%= cl_image_tag friend.photo.key, class: "image-form border border-white", height: 40, width: 40, crop: :fill %> </div>
                     <% else %>
-                      <div> <%= image_tag "avatar_placeholder.jpg", class: "rounded-circle border border-white", height: 40, width: 40, crop: :fill %> </div>
+                      <div> <%= image_tag "avatar_placeholder.jpg", class: "image-form border border-white", height: 40, width: 40, crop: :fill %> </div>
                     <% end %>
                     <div class="p-2"><h2><%= friend.username%></h2></div>
                   </div>
@@ -61,7 +61,7 @@
 
       <div class="add-user m-4" data-controller="add-connection">
         <%= form_with url: profile_path, method: :get, html: {class: "mb-4", data: {add_connection_target: "form"}} do |f| %>
-          <%= f.label :query, "Add a User" %>
+          <%= f.label :query, "Add a User", class: "mb-2" %>
           <%= f.text_field :query, placeholder: "Search by username...",
                             class: "form-control",
                             value: params[:query],
@@ -82,7 +82,7 @@
               <%= link_to connections_path, data: { turbo_method: :post }, class: "btn btn-primary btn-middle-blue" do %>
                 <span>Generate Link</span><i class="fa-solid fa-plus ms-1"></i>
               <% end %>
-              <button class="btn btn-primary" data-action="click->clipboard#copy">Copy link <i class="fa-solid fa-copy"></i> </button>
+              <button class="btn btn-primary btn-middle-blue" data-action="click->clipboard#copy">Copy link <i class="fa-solid fa-copy"></i> </button>
             </div>
             <div>
               <input class="w-100" data-clipboard-target="input" type="text" value="<%= link %>" readonly>

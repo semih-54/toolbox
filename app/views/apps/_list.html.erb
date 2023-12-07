@@ -35,7 +35,7 @@
                   <% end %>
                 <% else %>
                   <%= link_to profile_path(voter_id: vote.user.id) do %>
-                    <%= image_tag "semih_profile.png", class: "rounded-circle border border-white", width: "25px", height: "25px", crop: :fill  %>
+                    <%= image_tag "avatar_placeholder.jpg", class: "rounded-circle border border-white", width: "25px", height: "25px", crop: :fill  %>
                   <% end %>
                 <% end %>
               <% end %>
@@ -61,7 +61,7 @@
                               <% end %>
                             <% else %>
                                 <%= link_to profile_path(user_id: vote.user.id) do %>
-                                  <%= image_tag "semih_profile.png", class: "rounded-circle border border-white", width: "25px", height: "25px", crop: :fill  %>
+                                  <%= image_tag "avatar_placeholder.jpg", class: "rounded-circle border border-white", width: "25px", height: "25px", crop: :fill  %>
                                 <% end %>
                               <% end %>
                               <div class="p-2 text-white"><h2><%= vote.user.username%></h2></div>
@@ -86,7 +86,7 @@
                   <% end %>
                 <% else %>
                   <%= link_to profile_path(voter_id: vote.user.id) do %>
-                    <%= image_tag "semih_profile.png", class: "rounded-circle border border-white", width: "25px", height: "25px", crop: :fill  %>
+                    <%= image_tag "avatar_placeholder.jpg", class: "rounded-circle border border-white", width: "25px", height: "25px", crop: :fill  %>
                   <% end %>
                 <% end %>
               <% end %>
@@ -159,7 +159,7 @@
                               <% end %>
                             <% else %>
                                 <%= link_to profile_path(user_id: vote.user.id) do %>
-                                  <%= image_tag "semih_profile.png", class: "rounded-circle border border-white", width: "25px", height: "25px", crop: :fill  %>
+                                  <%= image_tag "avatar_placeholder.jpg", class: "rounded-circle border border-white", width: "25px", height: "25px", crop: :fill  %>
                                 <% end %>
                               <% end %>
                               <div class="p-2 text-white"><h2><%= vote.user.username%></h2></div>
@@ -181,7 +181,7 @@
                    <% end %>
                  <% else %>
                     <%= link_to profile_path(user_id: vote.user.id) do %>
-                      <%= image_tag "semih_profile.png", class: "rounded-circle border border-white", width: "25px", height: "25px", crop: :fill  %>
+                      <%= image_tag "avatar_placeholder.jpg", class: "rounded-circle border border-white", width: "25px", height: "25px", crop: :fill  %>
                     <% end %>
                   <% end %>
                 <% end %>

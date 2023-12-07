@@ -27,14 +27,19 @@
 }
 
 // profile page
+
+.image-form {
+  border-radius: 0.6em;
+}
+
 .btn-middle-blue {
-  background-color: #0F4C75 !important;
-  border-color: #0F4C75 !important ;
+  background-color: #0db096 !important;
+  border-color: #0db096 !important ;
 }
 
 .btn-light-blue {
-  background-color: #3282B8 !important;
-  border-color: #3282B8 !important ;
+  background-color: #5585c9 !important;
+  border-color: #5585c9 !important ;
 }
 
 .modal-content {
@@ -48,5 +53,5 @@
 
 .border-top {
   border-top: 1px;
-  border-color: #0F4C75;
+  border-color: #0db096;
 }

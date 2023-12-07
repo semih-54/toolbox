@@ -28,7 +28,7 @@
         <% if comment.user.photo.attached? %>
             <%= cl_image_tag vote.user.photo.key, class: "rounded-circle border border-white", width: "25px", height: "25px", crop: :fill %>
           <% else %>
-            <%= image_tag "semih_profile.png", class: "rounded-circle border border-white", width: "25px", height: "25px", crop: :fill  %>
+            <%= image_tag "avatar_placeholder.jpg", class: "rounded-circle border border-white", width: "25px", height: "25px", crop: :fill  %>
         <% end %>
         <strong> <%= link_to comment.user.username, profile_path(user_id: comment.user.id), class:"text-decoration-none" %>: </strong>
         <%= comment.comment %>
@@ -37,17 +37,14 @@
     </div>
   </div>
 
-  <div class="app-card mt-2">
-    <p class="px-3"><strong> Add a comment:</strong></p>
     <div class="description px-2">
       <%= form_with(model: [ @app, @app.comments.build ], local: true) do |form| %>
-        <div class="field">
-          <%= form.text_area :comment, class: "form-control", placeholder: "Type your comment here..." %>
+        <div class="field mb-3" style="">
+          <%= form.text_area :comment, class: "form-control bg-glass", placeholder: "Type your comment here..." %>
         </div>
         <div class="actions mt-2">
           <%= form.submit "Add comment", class: "btn btn-primary" %>
         </div>
       <% end %>
     </div>
-  </div>
 </div>

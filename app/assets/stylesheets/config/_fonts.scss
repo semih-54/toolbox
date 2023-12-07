@@ -1,7 +1,9 @@
 // Import Google fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito:400,700|Work+Sans:400,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=DM+Mono&family=Open+Sans&family=Roboto+Condensed:wght@100&family=Roboto+Slab&family=Sometype+Mono&display=swap');
-$body-font: "Open Sans", "Helvetica", "sans-serif";
+@import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,400;0,600;1,200&display=swap');
+
+$body-font: "Karla", "Helvetica", "sans-serif";
 $headers-font: "DM Mono", "Helvetica", "sans-serif";
 $upvote-font: "DM Mono", "Helvetica", "sans-serif";
 

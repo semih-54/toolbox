@@ -67,3 +67,8 @@
   display: flex;
   gap: 5px;
 }
+
+
+.glass-bg {
+  background: var(--glass, linear-gradient(104deg, rgba(217, 217, 217, 0.42) 0%, rgba(121, 203, 183, 0.22) 47.92%, rgba(14, 255, 197, 0.18) 100%));
+}
