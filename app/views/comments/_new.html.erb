@@ -1,0 +1,18 @@
+<div class="card-glass comment d-none" data-comments-target="newComment">
+  <% if current_user.photo.attached? %>
+    <%= link_to profile_path(user_id: current_user.id) do %>
+      <%= cl_image_tag current_user.photo.key, class: "avatar-squared", width: 25, height: 25, crop: :fill %>
+    <% end %>
+  <% else %>
+    <%= link_to profile_path(user_id: current_user.id) do %>
+      <%= image_tag "semih_profile.png", class: "avatar-squared", width: 25, height: 25, crop: :fill  %>
+    <% end %>
+  <% end %>
+  <%= simple_form_for [app, Comment.new] do |f| %>
+    <%= f.input :comment %>
+    <%= f.submit %>
+  <% end %>
+  <% if current_user.vote_of(app)  %>
+    <p><%= current_user.vote_of(app).upvoted? ? "👍" : "👎" %></p>
+  <% end %>
+</div>
