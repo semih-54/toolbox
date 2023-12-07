@@ -11,33 +11,38 @@
                 action: "keyup->search-tools#update"
               }
           %>
-        <%#= submit_tag "Search", name: "", class: "btn btn-primary" %>
       <% end %>
-      <%#replace filter button action with stimulus %>
     </div>
   </div>
 
 
-  <div class="filters d-flex justify-content-between mb-3">
-    <div class="filter_button d-flex me-2">
+  <div class="filters">
+    <div class="filter-category-button">
       <%= form_with(url: apps_path, method: :get, local: true, data: { filter_target: "form"}) do %>
-        <%= select_tag :category_id, options_from_collection_for_select(@categories, :id, :name, params[:category_id]), include_blank: 'All Categories', data: {
-                filter_target: "category",
-                action: "change->filter#submit"
-              } %>
+        <%= select_tag :category_id,
+                        options_from_collection_for_select(@categories, :id, :name, params[:category_id]),
+                        include_blank: 'All Categories',
+                        class: "category-form",
+                        data: {
+                          filter_target: "category",
+                          action: "change->filter#submit"
+                        } %>
       <% end %>
     </div>
 
-    <div class="toggle pt-2">
-      <% if params[:connections] == "true" %>
-        <i class="fa-solid fa-user-group pe-2 " style="color: #F4F4F4">
-        <%= link_to "Only", request.params.merge(connections: false), class: "filter_button_on" %></i>
-      <% else %>
-        <i class="fa-solid fa-user-group pe-2 " style="color: #3282B8">
-        <%= link_to "Only", request.params.merge(connections: true), class: "filter_button" %></i>
+    <div class="toggle-connection">
+      <%= form_with(url: apps_path, method: :get, local: true, data: { filter_target: "form"}) do %>
+        <label class="switch">
+          <%= check_box :connections, :connections,
+                          data: {
+                            filter_target: "connections",
+                            action: "change->filter#connections"
+                          } %>
+          <span class="slider"></span>
+        </label>
       <% end %>
-    </div>
 
+    </div>
   </div>
 
   <%= render "list", apps: @apps %>
