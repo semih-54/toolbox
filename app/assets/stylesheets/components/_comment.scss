@@ -1,0 +1,12 @@
+.comment {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1em;
+  margin: 1em 0;
+  .comment__content {
+    padding: 0 1em;
+    width: 40ch;
+    text-align: left;
+  }
+}

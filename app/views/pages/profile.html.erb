@@ -10,9 +10,9 @@
     <% end %>
     <div class="card-profile__content">
       <% if user_for_profile.photo.attached? %>
-        <%= cl_image_tag user_for_profile.photo.key, class: "image-form border border-white", crop: :fill %>
+        <%= cl_image_tag user_for_profile.photo.key, class: "image-form border border-white" %>
       <% else %>
-        <%= image_tag "avatar_placeholder.jpg", class: "image-form border border-white", crop: :fill %>
+        <%= image_tag "avatar_placeholder.jpg", class: "image-form border border-white" %>
       <% end %>
       <div>
         <div class="fw-bold mb-1 fs-2"><%= user_for_profile.username %></div>

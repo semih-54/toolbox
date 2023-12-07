@@ -1,0 +1,10 @@
+.card-glass {
+  padding: 1rem;
+  background: $glass;
+  border-radius: 4.8px;
+}
+
+.card-glass--scrollable {
+  overflow-y: scroll;
+  max-height: 200px;
+}
