@@ -2,7 +2,7 @@ class App < ApplicationRecord
   DESCRIPTION_LENGTH = 150
   NAME_LENGTH = 25
   CATEGORY_LENGTH = 30
-  COMMENT_LENGTH = 80
+  COMMENT_LENGTH = 100
 
   has_many :votes
   has_many :users, through: :votes
