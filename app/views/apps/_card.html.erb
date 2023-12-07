@@ -6,7 +6,7 @@
 
     <div class="app-body">
       <%= link_to app_path(app) do %>
-        <%= image_tag app.logo_url, width: "80px", height: "80px", crop: :fill, class: "app-img" %>
+        <%= image_tag app.logo_url, width: "80px", height: "80px", crop: :fill, class: "tool-icon" %>
       <% end %>
 
       <div class="app-details">
@@ -21,11 +21,11 @@
             <% app.votes.where(vote: 1, user: current_user.friends).each_with_index do |vote, index| %>
               <% if vote.user.photo.attached? %>
                 <%= link_to profile_path(voter_id: vote.user.id), class: ("shift-left" if index > 0) do %>
-                  <%= cl_image_tag vote.user.photo.key, class: "rounded-circle border border-white", width: "25px", height: "25px", crop: :fill %>
+                  <%= cl_image_tag vote.user.photo.key, class: "image-form border border-white", width: "25px", height: "25px", crop: :fill %>
                 <% end %>
               <% else %>
                 <%= link_to profile_path(voter_id: vote.user.id), class: ("shift-left" if index > 0) do %>
-                  <%= image_tag "semih_profile.png", class: "rounded-circle border border-white", width: "25px", height: "25px", crop: :fill  %>
+                  <%= image_tag "semih_profile.png", class: "image-form border border-white", width: "25px", height: "25px", crop: :fill  %>
                 <% end %>
               <% end %>
             <% end %>
@@ -41,11 +41,11 @@
             <% app.votes.where(vote: 1, user: current_user.friends).each_with_index do |vote, index| %>
               <% if vote.user.photo.attached? %>
                 <%= link_to profile_path(voter_id: vote.user.id), class: ("shift-left" if index > 0) do %>
-                <%= cl_image_tag vote.user.photo.key, class: "rounded-circle border border-white", width: "25px", height: "25px", crop: :fill %>
+                <%= cl_image_tag vote.user.photo.key, class: "image-form border border-white", width: "25px", height: "25px", crop: :fill %>
                 <% end %>
               <% else %>
                 <%= link_to profile_path(voter_id: vote.user.id), class: ("shift-left" if index > 0) do %>
-                  <%= image_tag "semih_profile.png", class: "rounded-circle border border-white", width: "25px", height: "25px", crop: :fill  %>
+                  <%= image_tag "semih_profile.png", class: "image-form border border-white", width: "25px", height: "25px", crop: :fill  %>
                 <% end %>
               <% end %>
             <% end %>
