@@ -60,10 +60,10 @@
       </div>
     </div>
   </div>
-  <div class="votings" data-controller="votes">
+  <div class="votings">
     <div class="vote-num">
       <small class="total_votes"> <%= app.total_votes + app.total_vote_g2  %> </small>
     </div>
-      <%= render "vote_buttons", app: app %>
+      <%= render "apps/vote_buttons", app: app %>
   </div>
 </div>

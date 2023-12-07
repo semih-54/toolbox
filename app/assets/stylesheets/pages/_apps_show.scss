@@ -1,6 +1,14 @@
 .comments-header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin: 1em 0;
   width: 100%;
+}
+
+.card-glass--description {
+  margin: 1em 0;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
 }

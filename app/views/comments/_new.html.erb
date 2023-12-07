@@ -8,9 +8,17 @@
       <%= image_tag "semih_profile.png", class: "avatar-squared", width: 25, height: 25, crop: :fill  %>
     <% end %>
   <% end %>
-  <%= simple_form_for [app, Comment.new] do |f| %>
-    <%= f.input :comment %>
-    <%= f.submit %>
+  <%= simple_form_for [app, Comment.new], html: { class: "comment-form"} do |f| %>
+    <%= f.input :comment,
+        label_html: { class: "d-none"},
+        input_html: {
+          placeholder: "Add a comment...",
+          class: "comment-form__input",
+        },
+        wrapper_html: {
+          class: "comment-form__wrapper"
+        } %>
+    <%= f.button :submit, "Add", class: "btn-ghost" %>
   <% end %>
   <% if current_user.vote_of(app)  %>
     <p><%= current_user.vote_of(app).upvoted? ? "👍" : "👎" %></p>

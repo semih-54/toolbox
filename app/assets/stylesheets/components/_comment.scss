@@ -3,10 +3,27 @@
   align-items: center;
   justify-content: space-between;
   padding: 1em;
-  margin: 1em 0;
+  margin-bottom: 1em;
   .comment__content {
     padding: 0 1em;
     width: 40ch;
     text-align: left;
+  }
+}
+
+.comment-form {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .comment-form__input {
+    width: 100%;
+    padding: 1em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    align-self: stretch;
+  }
+  .comment-form__wrapper {
+    margin: 0 !important;
   }
 }
