@@ -1,50 +1,19 @@
 <div class="container">
- <%= link_to apps_path, class: "backBtn" do %>
-  <i class="fas fa-arrow-left"></i> Back
- <% end %>
-
-  <div class="app-card mt-2">
-    <div class="app d-flex flex-column justify-content mb-3 align-items-center">
-      <div class="header d-flex mb-3">
-            <%= image_tag @app.logo_url, width: "130px", height: "130px", crop: :fill %>
-        <div class="header-content px-3">
-          <div class="name"> <h3 class="fw-bold app-name"> <%= @app.name %> </h3> </div>
-          <div class="category"> <p> <strong>Category:</strong>  <%= @app.categories.map(&:name).join(", ") %> </p> </div>
-          <div class="upvotes"><strong>Total votes:</strong> <%= @app.total_votes %>   </div>
-        </div>
-      </div>
-    </div>
-
+  <%= render "card", app: @app %>
+  <div class="card-glass card-glass--scrollable">
+    <p><%= @app.description %></p>
   </div>
-  <div class="app-card mt-2">
-    <p class="px-3"><strong>Description:</strong></p>
-    <div class="description px-2"> <%= @app.description.truncate(App::DESCRIPTION_LENGTH) %> </div>
-    <div class="see-more px-2"> <%= link_to "see more", app_path %> </div>
+
+  <div class="comments-header">
+    <div class="toggle"></div>
+    <h3>COMMENTS</h3>
+    <div class="tile"><%= @app.comments.count %></div>
+    <a href="#" class="btn-ghost">Add Yours</a>
   </div>
-  <div class="app-card mt-2">
-    <p class="px-3"><strong> Comments:</strong></p>
-    <div class="description px-2"> <% @app.comments.each do |comment| %>
-      <div class="bg-white px-2 mb-2">
-        <% if comment.user.photo.attached? %>
-            <%= cl_image_tag comment.user.photo.key, class: "rounded-circle border border-white", width: 25, height: 25, crop: :fill %>
-          <% else %>
-            <%= image_tag "avatar_placeholder.jpg", class: "rounded-circle border border-white", width: "25px", height: "25px", crop: :fill  %>
-        <% end %>
-        <strong> <%= link_to comment.user.username, profile_path(user_id: comment.user.id), class:"text-decoration-none" %>: </strong>
-        <%= comment.comment %>
-      </div>
+
+  <div class="card-glass--scrollable">
+    <% @app.comments.each  do |comment|%>
+      <%= render "comments/comment", comment: comment %>
     <% end %>
-    </div>
   </div>
-
-    <div class="description px-2">
-      <%= form_with(model: [ @app, @app.comments.build ], local: true) do |form| %>
-        <div class="field mb-3" style="">
-          <%= form.text_area :comment, class: "form-control bg-glass", placeholder: "Type your comment here..." %>
-        </div>
-        <div class="actions mt-2">
-          <%= form.submit "Add comment", class: "btn btn-primary" %>
-        </div>
-      <% end %>
-    </div>
 </div>
